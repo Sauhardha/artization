@@ -1,0 +1,90 @@
+/* ==== IMPORTS ==== */
+@import url('https://fonts.googleapis.com/css2?family=Cardo:wght@400;700&family=Montserrat:wght@100;200;300;400;500;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ====+++ FONTS +++==== */
+
+/* Adjust size and weight in tailwind */
+.headFont {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.bodyFont {
+  font-family: 'Cardo', serif;
+}
+
+/* ====+++ COLOUR PALLETTE +++==== */
+
+
+/* COLOUR FOR BACKGROUNDS */
+.bgDark {
+  background-color: #191E22;
+}
+
+.bgLight {
+  background-color: #f5f5f5;
+}
+
+.bg1 {
+  background-color: #D9597B;
+}
+
+.bg2 {
+  background-color: #873F7B;
+}
+
+.bg3 {
+  background-color: #52EFB2;
+}
+
+.bg4 {
+  background-color: #459BD7;
+}
+
+.bg5 {
+  background-color: #3D4EFA;
+}
+
+.bg6 {
+  background-color: #f9a15d;
+}
+
+/* COLOUR FOR FONTS */
+
+.dark {
+  color: #191E22;
+}
+
+.light {
+  color: #f5f5f5;
+}
+
+.c1 {
+  color: #D9597B;
+}
+
+.c2 {
+  color: #873F7B;
+}
+
+.c3 {
+  color: #52EFB2;
+}
+
+.c4 {
+  color: #459BD7;
+}
+
+.c5 {
+  color: #3D4EFA;
+}
+
+.c6 {
+  color: #f9a15d;
+}
+
+
+/* ===== ANIMATIONS ===== */
+
