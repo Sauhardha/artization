@@ -13,7 +13,7 @@ function App() {
    <div>
     <BrowserRouter>
         <Routes>
-          <Route index element= { <HomePage.jsx/>} />
+          <Route index element= { <HomePage/>} />
           <Route path="/home" element={<HomePage/>} />
           <Route path="/login" element={<LoginPage/>} />
           <Route path="/gallery" element={<GalleryPage/>} />
