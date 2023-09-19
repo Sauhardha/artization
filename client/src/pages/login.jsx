@@ -10,13 +10,16 @@ function LoginPage() {
             <body class=" h-screen">
                 <div className='grid grid-cols-12 h-screen'>
 
+
+                    {/* Artization logo on left of page */}
                     <div className='bgLogo col-span-4 flex justify-center items-center'>
                         <img src="/ARTIZATION.png" alt="" className='w-80 h-80'/>
                     </div>
 
-
+                    {/* Login box on right of page */}
                     <div class="bg-stone-200 col-span-8 p-8 rounded shadow-md flex justify-center items-center">
 
+                        
                         <div className='w-96'>
                             <h1 class="text-2xl dark headFont mb-4">Log In</h1>
                             <form>
@@ -33,6 +36,13 @@ function LoginPage() {
                                 </button>
                             </form>
                         </div>
+
+
+
+
+
+
+
 
                     </div>
                 </div>
