@@ -1,4 +1,5 @@
 //Import Modules
+
 const express = require("express");
 const mongoose = require("mongoose");
 const morgan = require("morgan");
@@ -8,10 +9,10 @@ const userRoutes = require('./routes/user');
 require('dotenv').config();
 
 
-
-
 //App
 const app = express();
+app.use(express.json())
+
 
 
 //DB
