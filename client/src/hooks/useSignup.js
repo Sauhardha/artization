@@ -25,7 +25,7 @@ export const useSignup = () => {
         if (response.ok) {
         const json = await response.json();
 
-        console.log('expecting****', json)
+    
             // Save the user to local storage JWT
             // userController in backend uses (user, token)
             localStorage.setItem('user', JSON.stringify(json))

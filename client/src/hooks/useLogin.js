@@ -28,8 +28,8 @@ export const useLogin = () => {
             // userController in backend uses (user, token)
             localStorage.setItem('user', JSON.stringify(json))
 
-            // Update AuthContext
-            //dispatch({type: 'LOGIN', payload: json})
+            //Update AuthContext
+            dispatch({type: 'LOGIN', payload: json})
 
             setIsLoading(false)
         }
