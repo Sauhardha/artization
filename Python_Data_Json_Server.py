@@ -3,6 +3,12 @@ import json
 import os
 app = Flask(__name__)
 
+print("__________________________________________________________")
+print("For Detailed Data, please use: http://127.0.0.1:5000/json")
+print("For Summary Data, please use: http://127.0.0.1:5000/json2")
+print("----------------------------------------------------------")
+print()
+
 @app.route('/')
 def intro():
     return "<p>This is the Artization data server</p>"
@@ -13,7 +19,7 @@ views_per_raspid = {}
 highest_frame_numbers = {}
 
 
-with open('C://Documents//SDS//mydata.csv', newline='') as file: #change path for where the raw data csv file is located. 
+with open('C://Documents//SDS//mydata.csv', newline='') as file: #please change path to where the dataset is stored
     lines = file.readlines()
 
 lines = lines[1:]
@@ -60,7 +66,7 @@ def json_1():
     with open(filename, 'w') as json_file:
         json.dump(results_dict, json_file, indent=4)
 
-    return jsonify(message="File generated and saved.")
+    return jsonify(message="Json file detailing all viewers data has been generated and saved.")
 
 @app.route('/json2', methods=['GET'])
 def json_2():
@@ -84,7 +90,9 @@ def json_2():
     with open(filename, 'w') as json_file:
         json.dump(results_dict, json_file, indent=4)
 
-    return jsonify(message="File generated and saved.")
+    return jsonify(message="Summary Json file has been generated and saved.")
+
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    app.run()
+
