@@ -3,6 +3,10 @@ import json
 import os
 app = Flask(__name__)
 
+@app.route('/')
+def intro():
+    return "<p>This is the Artization data server</p>"
+
 emotions = ["Happy", "Sad", "Excited", "Surprise", "Neutral"]
 emotion_totals_per_raspid = {emotion: {} for emotion in emotions}
 views_per_raspid = {}
