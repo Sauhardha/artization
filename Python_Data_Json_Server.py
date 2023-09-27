@@ -9,7 +9,7 @@ views_per_raspid = {}
 highest_frame_numbers = {}
 
 
-with open('C://Documents//SDS//mydata.csv', newline='') as file:
+with open('C://Documents//SDS//mydata.csv', newline='') as file: #change path for where the raw data csv file is located. 
     lines = file.readlines()
 
 lines = lines[1:]
