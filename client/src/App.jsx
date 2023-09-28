@@ -6,6 +6,7 @@ import Login from './pages/LoginPage';
 import Navbar from './components/Navbar';
 // import { Router, Route, Routes } from "react-router-dom"; //Will use to create routes later
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import ContactPage from './pages/ContactPage';
 function App() {
 
 
@@ -21,6 +22,7 @@ function App() {
           <Route path="/home" element={<HomePage/>} />
           <Route path="/login" element={<Login/>} />
           <Route path="/gallery" element={<GalleryPage/>} />
+          <Route path="/contact" element={<ContactPage/>} />
         </Routes>
     </BrowserRouter>
    </div>
