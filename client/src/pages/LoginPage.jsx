@@ -22,7 +22,7 @@ const Login = () => {
                 </div>
 
                 {/* Login Form */}
-                <div className=' p-8 grid grid-cols-2 gap-8 w-auto'>
+                <div className=' p-8 grid grid-cols-2 gap-16 w-auto'>
                     <img src="/images/aiFace.png" alt="" className='w-64 h-80' />
 
                     <div className='w-auto my-4'>

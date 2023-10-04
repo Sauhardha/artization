@@ -4,13 +4,20 @@ import './styles/index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { AuthContextProvider } from './context/AuthContext';
+import { ArtworksContextProvider } from './context/ArtworksContext'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+
+    
     <AuthContextProvider>
-      <App />
+      <ArtworksContextProvider>
+        <App />
+      </ArtworksContextProvider>
     </AuthContextProvider>
+
+
   </React.StrictMode>
 );
 

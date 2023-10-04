@@ -22,7 +22,7 @@ const Signup = () => {
                 </div>
 
                 {/* Login Form */}
-                <div className='p-8 grid grid-cols-2 gap-8 w-auto'>
+                <div className='p-8 grid grid-cols-2 gap-16 w-auto'>
                     <img src="/images/userPotential.png" alt="" className='self-center md:w-96 md:h-72 w-72 h-40 ' />
 
                     <div className='w-auto my-4'>
