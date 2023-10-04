@@ -13,7 +13,7 @@ export const artworksReducer = (state, action) => {
         }
         case 'CREATE_ARTWORK':
             return {
-                //gallery: [action.payload, ...state.gallery]
+                gallery: [action.payload, ...state.gallery]
             }
         case 'DELETE_ARTWORK':
             return {
