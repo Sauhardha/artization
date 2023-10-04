@@ -8,19 +8,17 @@ import Navbar from './components/Navbar';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 function App() {
 
-
-
   return (
     //All components that are nested inside this App component have access to the router
    <div>
     <BrowserRouter>
         <Navbar />
         <Routes>
-          <Route index element= { <Login/>} /> 
+          {/* <Route path='' element= { <Login/>} />  */}
           <Route path='/signup' element={<Signup />} />
-          <Route path="/home" element={<HomePage/>} />
           <Route path="/login" element={<Login/>} />
           <Route path="/gallery" element={<GalleryPage/>} />
+          <Route path="/" element={<HomePage/>} />
         </Routes>
     </BrowserRouter>
    </div>
