@@ -11,17 +11,14 @@ import AdminPage from './pages/AdminPage';
 
 function App() {
 
-
-
   return (
     //All components that are nested inside this App component have access to the router
    <div>
     <BrowserRouter>
         <Navbar />
         <Routes>
-          <Route index element= { <Login/>} /> 
+          {/* <Route path='/' element= { <Login/>} />  */}
           <Route path='/signup' element={<Signup />} />
-          <Route path="/home" element={<HomePage/>} />
           <Route path="/login" element={<Login/>} />
           <Route path="/gallery" element={<GalleryPage/>} />
           <Route path="/admin" element={<AdminPage/>} />
