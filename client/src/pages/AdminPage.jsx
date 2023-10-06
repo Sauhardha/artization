@@ -1,13 +1,13 @@
 import React from 'react';
+import ArtworkForm from '../components/ArtworkForm';
+import GalleryPage from './GalleryPage';
 import {useEffect } from 'react';
 
 // Components
 import ArtworkDetails from '../components/ArtworkDetails';
 import { useArtworksContext } from '../hooks/useArtworksContext';
 
-
-const GalleryPage = () => {
-  //const [gallery, setGallery] = useState(null)
+function AdminPage() {
   const {gallery, dispatch} = useArtworksContext()
 
 
@@ -29,21 +29,18 @@ const GalleryPage = () => {
 
 
   return (
-    <div className="GalleryPage bgDark light flex flex-col  h-full">
+    <div className="AdminPage bgDark h-full flex flex-col p-8 justify-center items-center">
 
-      <div className='self-center text-4xl py-8 headFont font-bold w-80'>
-        <h1 className='light'>Sydney Gallery</h1>
-      </div>
+      <ArtworkForm />
 
 
-      <div className='gallery grid lg:grid-cols-4 gap-10 p-4 mx-auto'>
-        {/* If we have a gallery then map */}
+      <div className='gallery grid lg:grid-cols-4 gap-10 p-4 mx-auto text-white p-8'>
         {gallery && gallery.map((artwork) => (
-            <ArtworkDetails key={artwork._id} artwork={artwork} />
+          <ArtworkDetails key={artwork._id} artwork={artwork} isAdminView={true} />
         ))}
       </div>
     </div>
   );
 }
 
-export default GalleryPage;
+export default AdminPage;

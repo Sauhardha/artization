@@ -6,6 +6,9 @@ import Login from './pages/LoginPage';
 import Navbar from './components/Navbar';
 // import { Router, Route, Routes } from "react-router-dom"; //Will use to create routes later
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import AdminPage from './pages/AdminPage';
+
+
 function App() {
 
   return (
@@ -14,11 +17,12 @@ function App() {
     <BrowserRouter>
         <Navbar />
         <Routes>
-          {/* <Route path='' element= { <Login/>} />  */}
+          {/* <Route path='/' element= { <Login/>} />  */}
           <Route path='/signup' element={<Signup />} />
           <Route path="/login" element={<Login/>} />
           <Route path="/gallery" element={<GalleryPage/>} />
-          <Route path="/" element={<HomePage/>} />
+          <Route path="/admin" element={<AdminPage/>} />
+
         </Routes>
     </BrowserRouter>
    </div>

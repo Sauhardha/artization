@@ -4,16 +4,14 @@ const express = require("express");
 const mongoose = require("mongoose");
 const morgan = require("morgan");
 const cors = require ("cors");
+const artworkRoutes = require('./routes/artwork');
 const userRoutes = require('./routes/user');
 
 require('dotenv').config();
 
-
 //App
 const app = express();
 app.use(express.json())
-
-
 
 //DB
 mongoose
@@ -29,6 +27,7 @@ app.use(morgan('dev'));
 app.use(cors({origin: true , credentials: true}));
 
 //Routes
+app.use('/api/artworks', artworkRoutes)
 app.use('/api/user', userRoutes);
 
 //Port
