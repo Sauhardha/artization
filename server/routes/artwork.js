@@ -11,8 +11,8 @@ const requireAuth = require('../middleware/requireAuth')
 
 const router = express.Router()
 
-// require auth for all workout routes
-//router.use(requireAuth)
+// require auth for all artwork routes
+router.use(requireAuth)
 
 // GET all art in gallery
 router.get('/', getGallery)

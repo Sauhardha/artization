@@ -1,5 +1,6 @@
 import React from 'react';
 import {useEffect } from 'react';
+import {useAuthContext} from '../hooks/useAuthContext';
 
 // Components
 import ArtworkDetails from '../components/ArtworkDetails';
@@ -9,23 +10,35 @@ import { useArtworksContext } from '../hooks/useArtworksContext';
 const GalleryPage = () => {
   //const [gallery, setGallery] = useState(null)
   const {gallery, dispatch} = useArtworksContext()
+  const {user} = useAuthContext()
 
 
   useEffect(() => {
     const fetchArtworks = async () => {
-      const response = await fetch('http://localhost:8080/api/artworks')
-      // Each object from backend represents an artwork
-      // Array of objects here
-      const json = await response.json()
-
-      if (response.ok) {
-        //setGallery(json)
-        dispatch({type:'SET_ARTWORKS', payload:json})
+      if (user) { // Check if user exists before making the API request
+        try {
+          const response = await fetch('http://localhost:8080/api/artworks', {
+            headers: {
+              'Authorization': `Bearer ${user.token}`
+            }
+          });
+          // Each object from backend represents an artwork
+          // Array of objects here
+          const json = await response.json();
+  
+          if (response.ok) {
+            dispatch({ type: 'SET_ARTWORKS', payload: json });
+          }
+        } catch (error) {
+          console.error('Error fetching artworks:', error);
+        }
       }
-    }
-
-    fetchArtworks()
-  }, [dispatch])
+    };
+  
+    fetchArtworks(); // Call the fetchArtworks function
+  
+  }, [dispatch, user]);
+  
 
 
   return (
