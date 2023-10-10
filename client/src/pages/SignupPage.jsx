@@ -14,29 +14,29 @@ const Signup = () => {
     }
 
     return (
-        <div className='h-screen flex justify-center items-center bgDark'>
-            <div className="bg-white p-8 rounded shadow-md flex flex-col justify-center items-center">
+        <div className='flex items-center justify-center h-max bgDark'>
+            <div className="flex flex-col items-center justify-center h-[35rem] p-0 mt-4 bg-white rounded-xl shadow-md">
                 {/* Logo */}
-                <div className='flex justify-center items-center w-max'>
+                {/* <div className='flex items-center justify-center w-max'>
                     <img src="/ARTIZATION.png" alt="" className='w-40 h-40' />
-                </div>
+                </div> */}
 
                 {/* Login Form */}
-                <div className='p-8 grid grid-cols-2 gap-16 w-auto'>
-                    <img src="/images/userPotential.png" alt="" className='self-center md:w-96 md:h-72 w-72 h-40 ' />
+                <div className='grid w-auto grid-cols-2 gap-16 p-8'>
+                    <img src="/images/userPotential.png" alt="" className='self-center h-40 md:w-96 md:h-72 w-72 ' />
 
-                    <div className='w-auto my-4'>
-                        <h1 className="text-2xl dark headFont mb-4">Create an Account</h1>
+                    <div className='w-80 my-4'>
+                        <h1 className="mb-4 text-2xl dark headFont">Create an Account</h1>
                         <form className='login' onSubmit={handleSubmit}>
                             <div className="mb-4">
                                 <label for="email" class="block dark">Email</label>
                                 <input type="email" id="username" name="username" onChange={(e) => setEmail(e.target.value)} value={email}
-                                    className="w-full bg-logo border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-emerald-300" required></input>
+                                    className="w-full px-3 py-2 border border-gray-300 rounded bg-logo focus:outline-none focus:border-emerald-300" required></input>
                             </div>
                             <div className="mb-6">
                                 <label for="password" class="block dark">Password</label>
                                 <input type="password" id="password" name="password" onChange={(e) => setPassword(e.target.value)} value={password}
-                                    className="w-full bg-logo border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-emerald-300" required></input>
+                                    className="w-full px-3 py-2 border border-gray-300 rounded bg-logo focus:outline-none focus:border-emerald-300" required></input>
                             </div>
                             <button disabled={isLoading} type="submit" class="w-full bg-blue-600 hover:bg-emerald-500 text-white font-semibold py-2 rounded focus:outline-none focus:ring focus:ring-blue-300">
                                 Sign Up

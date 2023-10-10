@@ -1,10 +1,10 @@
-import React from 'react';
+import React, {} from 'react';
 import HomePage from './pages/HomePage';
 import GalleryPage from './pages/GalleryPage';
 import Signup from './pages/SignupPage';
 import Login from './pages/LoginPage';
+import About from './pages/AboutPage';
 import Navbar from './components/Navbar';
-// import { Router, Route, Routes } from "react-router-dom"; //Will use to create routes later
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import AdminPage from './pages/AdminPage';
 import { useAuthContext } from './hooks/useAuthContext';
@@ -22,20 +22,17 @@ function App() {
         <Navbar />
         <div>
         <Routes>
-          
           {/* Default route when user is logged in */}
           {user ? (
             <>
-              <Route path="/" element={<HomePage />} />
+              <Route path="/" element={<Navigate to="/home" />} />
+              <Route path="/home" element={<HomePage />} />
               <Route path="/gallery" element={<GalleryPage />} />
               <Route path="/admin" element={<AdminPage />} />
             </>
           ) : (
             // Default route when user is not logged in
-            <>
-              <Route path="/" element={<Login />} />
-              <Route path="/signup" element={<Signup />} />
-            </>
+            <Route path="/*" element={<Login />} />
           )}
 
           {/* Login page */}
@@ -43,7 +40,7 @@ function App() {
 
           {/* If not logged in, access signup */}
           {!user && <Route path="/signup" element={<Signup />} />}
-
+          {!user && <Route path="/about" element={<About />} />}
         </Routes>
         </div>
     </BrowserRouter>
