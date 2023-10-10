@@ -59,7 +59,7 @@ const ArtworkForm = () => {
 
     return (
         
-        <form className='create bgLight p-8 rounded-lg' onSubmit={handleSubmit}>
+        <form className='create bgLight p-8 rounded-xl' onSubmit={handleSubmit}>
             <h3 className='headFont text-4xl tracking-tight font-medium'>Add a new Artwork</h3>
 
             <div className='space-y-4 text-lg p-8 '>

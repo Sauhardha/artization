@@ -34,6 +34,7 @@ const Navbar = () => {
             <div className="flex items-center ml-20 gap-8">
               <Link to="/" className="hover:text-emerald-400 transition-colors ease-in-out duration-300">Home</Link>
               <Link to="/gallery" className="hover:text-emerald-400 transition-colors ease-in-out duration-300">Gallery</Link>
+              <Link to="/admin" className="hover:text-emerald-400 transition-colors ease-in-out duration-300">Editor</Link>
             </div>
           )}
 
@@ -51,6 +52,7 @@ const Navbar = () => {
               <div className="p-2 space-x-8 flex items-center">
                 <Link to="/login">Login</Link>
                 <Link to="/about">About Us</Link>
+                
               </div>
             )}
 

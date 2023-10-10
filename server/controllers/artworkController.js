@@ -3,7 +3,9 @@ const mongoose = require('mongoose')
 
 // Get all artwork from gallery
 const getGallery = async (req, res) => {
-  const gallery = await Artwork.find({}).sort({createdAt: -1})
+  const user_id = req.user._id
+
+  const gallery = await Artwork.find({user_id}).sort({createdAt: -1})
 
   res.status(200).json(gallery)
 }
@@ -47,7 +49,9 @@ const createArtwork = async (req, res) => {
 
   // Add doc to db
   try {
-    const artwork = await Artwork.create({title, desc, stat})
+    const user_id = req.user._id
+
+    const artwork = await Artwork.create({title, desc, stat, user_id})
     res.status(200).json(artwork)
   } catch (error) {
     res.status(400).json({error: error.message})
