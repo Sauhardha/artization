@@ -29,7 +29,7 @@ const ArtworkDetails = ({ artwork, isAdminView }) => {
     }
 
     return (
-      <div className="artwork-details bg-zinc-800 rounded-lg shadow-slate-950 shadow-lg flex flex-col justify-between p-6 hover:shadow-slate-700 text-left w-auto">
+      <div className="artwork-details bg-zinc-800 rounded-lg shadow-slate-950 shadow-lg flex h-80 flex-col justify-end p-6 hover:shadow-slate-700 text-left w-60">
         <h4 className='headFont text-xl'>{artwork.title}</h4>
         <span className='font-medium text-sm'>{artwork.desc}</span>
         <span className='headFont c1 text-sm'>{artwork.stat}</span>
