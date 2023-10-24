@@ -17,10 +17,9 @@
 
 /* ====+++ COLOUR PALLETTE +++==== */
 
-
 /* COLOUR FOR BACKGROUNDS */
 .bgDark {
-  background-color: #191E22;
+  background-color: #191e22;
 }
 
 .bgLight {
@@ -28,31 +27,31 @@
 }
 
 .bgCream {
-  background-color: #EFEDE6;
+  background-color: #efede6;
 }
 
 .bgLogo {
-  background-color: #EFEFEF;
+  background-color: #efefef;
 }
 
 .bg1 {
-  background-color: #D9597B;
+  background-color: #d9597b;
 }
 
 .bg2 {
-  background-color: #873F7B;
+  background-color: #873f7b;
 }
 
 .bg3 {
-  background-color: #52EFB2;
+  background-color: #52efb2;
 }
 
 .bg4 {
-  background-color: #459BD7;
+  background-color: #459bd7;
 }
 
 .bg5 {
-  background-color: #3D4EFA;
+  background-color: #3d4efa;
 }
 
 .bg6 {
@@ -62,7 +61,7 @@
 /* COLOUR FOR FONTS */
 
 .dark {
-  color: #191E22;
+  color: #191e22;
 }
 
 .light {
@@ -70,47 +69,47 @@
 }
 
 .c1 {
-  color: #D9597B;
+  color: #d9597b;
 }
 
 .c2 {
-  color: #873F7B;
+  color: #873f7b;
 }
 
 .c3 {
-  color: #52EFB2;
+  color: #52efb2;
 }
 
 .c4 {
-  color: #459BD7;
+  color: #459bd7;
 }
 
 .c5 {
-  color: #3D4EFA;
+  color: #3d4efa;
 }
 
 .c6 {
   color: #f9a15d;
 }
 
-body{
-  background-color: #191E22;
+body {
+  background-color: #191e22;
 }
 
-
 /* ===== ANIMATIONS ===== */
-
-
 
 /* ===== ERROR ==== */
 div.error {
   padding: 10px;
   background: #ffefef;
-  border: 1px solid #D9597B;
+  border: 1px solid #d9597b;
   color: var(--error);
   border-radius: 4px;
   margin: 20px 0;
 }
 input.error {
-  border: 1px solid #D9597B;
+  border: 1px solid #d9597b;
 }
+
+/* ===== Graph ==== */
+

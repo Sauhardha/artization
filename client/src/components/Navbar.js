@@ -31,25 +31,25 @@ const Navbar = () => {
 
         <nav className="flex items-center justify-between w-full linkFont">
           {user && (
-            <div className="flex items-center ml-20 gap-8">
-              <Link to="/" className="hover:text-emerald-400 transition-colors ease-in-out duration-300">Home</Link>
-              <Link to="/gallery" className="hover:text-emerald-400 transition-colors ease-in-out duration-300">Gallery</Link>
-              <Link to="/admin" className="hover:text-emerald-400 transition-colors ease-in-out duration-300">Editor</Link>
+            <div className="flex items-center gap-8 ml-20">
+              <Link to="/" className="transition-colors duration-300 ease-in-out hover:text-emerald-400">Home</Link>
+              <Link to="/gallery" className="transition-colors duration-300 ease-in-out hover:text-emerald-400">Gallery</Link>
+              <Link to="/admin" className="transition-colors duration-300 ease-in-out hover:text-emerald-400">Editor</Link>
             </div>
           )}
 
           <div className="p-2 ml-auto">
 
             {user && (
-              <div className='flex w-80 items-center'>
+              <div className='flex items-center w-80'>
                 <span className="mx-8">Welcome, {formatEmail(user.email)}</span>
-                <button className="p-2 border-2 border-none rounded-xl transition ease duration-300 hover:bg-white hover:text-red-500" 
+                <button className="p-2 transition duration-300 border-2 border-none rounded-xl ease hover:bg-white hover:text-red-500" 
                 onClick={handeClick}> Logout{' '} </button>
               </div>
             )}
 
             {!user && (
-              <div className="p-2 space-x-8 flex items-center">
+              <div className="flex items-center p-2 space-x-8">
                 <Link to="/login">Login</Link>
                 <Link to="/about">About Us</Link>
                 

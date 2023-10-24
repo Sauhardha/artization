@@ -6,6 +6,7 @@ export const ArtworksContext = createContext()
 
 
 export const artworksReducer = (state, action) => {
+    console.log(state, action)
     switch (action.type) {
         case 'SET_ARTWORKS':
         return {

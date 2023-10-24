@@ -1,9 +1,10 @@
 import '../styles/index.css';
 import { useArtworksContext } from '../hooks/useArtworksContext';
 import {useAuthContext} from '../hooks/useAuthContext';
+import { Link } from 'react-router-dom';
 
 // Date-fns
-import formatDistanceToNow from 'date-fns/formatDistanceToNow'
+// import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 
 const ArtworkDetails = ({ artwork, isAdminView }) => {
 
@@ -15,7 +16,7 @@ const ArtworkDetails = ({ artwork, isAdminView }) => {
           return
         }
 
-        const response = await fetch('http://localhost:8080/api/artworks/' + artwork._id, {
+        const response = await fetch('http://localhost:8081/api/artworks/' + artwork._id, {
             method: 'DELETE',
             headers: {
               'Authorization': `Bearer ${user.token}`
@@ -29,15 +30,16 @@ const ArtworkDetails = ({ artwork, isAdminView }) => {
     }
 
     return (
-      <div className="artwork-details bg-zinc-800 rounded-lg shadow-slate-950 shadow-lg flex flex-col justify-between p-6 hover:shadow-slate-700 text-left w-auto">
-        <h4 className='headFont text-xl'>{artwork.title}</h4>
-        <span className='font-medium text-sm'>{artwork.desc}</span>
-        <span className='headFont c1 text-sm'>{artwork.stat}</span>
-        <span className='headFont c3 text-xs'>{formatDistanceToNow(new Date(artwork.createdAt), {addSuffix: true})}</span>
+      <Link className="flex flex-col justify-between w-auto gap-3 p-6 text-left rounded-lg shadow-lg artwork-details bg-zinc-800 shadow-slate-950 hover:shadow-slate-700" to={`/artwork/${artwork._id}`}>
+        <h4 className='text-xl headFont'>{artwork.title}</h4>
+        <span className='text-sm font-medium'>{artwork.desc.length > 100 ? `${artwork.desc.slice(0, 100)}...` : artwork.desc}</span>
+        <span className='text-sm headFont c1'>{artwork.stat}</span>
+        {/* <span className='text-xs headFont c3'>{formatDistanceToNow(new Date(artwork.createdAt), {addSuffix: true})}</span> */}
+        <img src={`http://localhost:8081${artwork.imageURL}`} alt='artwork' className='mt-auto'/>
         {isAdminView && (
-          <span className='material-symbols-outlined admin-only-del text-xl text-red-500 bg-gray-300 rounded-full cursor-pointer text-center w-8 mt-2 hover:bg-red-300' onClick={handleClick}>DELETE</span>
+          <span className='w-8 mt-2 text-xl text-center text-red-500 bg-gray-300 rounded-full cursor-pointer material-symbols-outlined admin-only-del hover:bg-red-300' onClick={handleClick}>DELETE</span>
         )}
-      </div>
+      </Link>
     )
   }
 export default ArtworkDetails

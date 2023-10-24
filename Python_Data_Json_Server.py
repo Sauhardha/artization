@@ -1,6 +1,9 @@
+#!/usr/local/bin/python
+
 from flask import Flask, jsonify
 import json
 import os
+import requests
 app = Flask(__name__)
 
 print("__________________________________________________________")
@@ -8,6 +11,9 @@ print("For Detailed Data, please use: http://127.0.0.1:5000/json")
 print("For Summary Data, please use: http://127.0.0.1:5000/json2")
 print("----------------------------------------------------------")
 print()
+
+api_url = 'http://localhost:8081/api/artworks/sessions'
+
 
 @app.route('/')
 def intro():
@@ -19,7 +25,7 @@ views_per_raspid = {}
 highest_frame_numbers = {}
 
 
-with open('C://Documents//SDS//mydata.csv', newline='') as file: #please change path to where the dataset is stored
+with open('/Users/mosesbuta/UTS/artization_main/mydata.csv', newline='') as file: #please change path to where the dataset is stored
     lines = file.readlines()
 
 lines = lines[1:]
@@ -53,11 +59,11 @@ def json_1():
             result_entry = {
                 "RaspID": raspid,
                 "SessionID": sessionid,
-                "AVG. Happy": sum(emotion_totals_per_raspid["Happy"][raspid][sessionid]) / len(emotion_totals_per_raspid["Happy"][raspid][sessionid]),
-                "AVG. Sad": sum(emotion_totals_per_raspid["Sad"][raspid][sessionid]) / len(emotion_totals_per_raspid["Sad"][raspid][sessionid]),
-                "AVG. Excited": sum(emotion_totals_per_raspid["Excited"][raspid][sessionid]) / len(emotion_totals_per_raspid["Excited"][raspid][sessionid]),
-                "AVG. Surprise": sum(emotion_totals_per_raspid["Surprise"][raspid][sessionid]) / len(emotion_totals_per_raspid["Surprise"][raspid][sessionid]),
-                "AVG. Neutral": sum(emotion_totals_per_raspid["Neutral"][raspid][sessionid]) / len(emotion_totals_per_raspid["Neutral"][raspid][sessionid]),
+                "Happy": sum(emotion_totals_per_raspid["Happy"][raspid][sessionid]) / len(emotion_totals_per_raspid["Happy"][raspid][sessionid]),
+                "Sad": sum(emotion_totals_per_raspid["Sad"][raspid][sessionid]) / len(emotion_totals_per_raspid["Sad"][raspid][sessionid]),
+                "Excited": sum(emotion_totals_per_raspid["Excited"][raspid][sessionid]) / len(emotion_totals_per_raspid["Excited"][raspid][sessionid]),
+                "Surprise": sum(emotion_totals_per_raspid["Surprise"][raspid][sessionid]) / len(emotion_totals_per_raspid["Surprise"][raspid][sessionid]),
+                "Neutral": sum(emotion_totals_per_raspid["Neutral"][raspid][sessionid]) / len(emotion_totals_per_raspid["Neutral"][raspid][sessionid]),
                 "Seconds": highest_frame_numbers[raspid][sessionid]
             }
             results_dict.append(result_entry)
@@ -65,6 +71,16 @@ def json_1():
     filename = 'Artization_Data_Results_per_View.json'
     with open(filename, 'w') as json_file:
         json.dump(results_dict, json_file, indent=4)
+        
+    
+    response = requests.post(api_url, json=results_dict)
+
+    # Check the response from the API
+    if response.status_code == 200:
+        print("Data sent successfully to the API.")
+    else:
+        print(f"Failed to send data to the API. Status code: {response.status_code}")
+    
 
     return jsonify(message="Json file detailing all viewers data has been generated and saved.")
 

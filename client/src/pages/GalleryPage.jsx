@@ -15,41 +15,34 @@ const GalleryPage = () => {
 
   useEffect(() => {
     const fetchArtworks = async () => {
-      if (user) { // Check if user exists before making the API request
-        try {
-          const response = await fetch('http://localhost:8080/api/artworks', {
-            headers: {
-              'Authorization': `Bearer ${user.token}`
-            }
-          });
-          // Each object from backend represents an artwork
-          // Array of objects here
-          const json = await response.json();
-  
-          if (response.ok) {
-            dispatch({ type: 'SET_ARTWORKS', payload: json });
-          }
-        } catch (error) {
-          console.error('Error fetching artworks:', error);
-        }
+      const response = await fetch('http://localhost:8081/api/artworks', {
+        headers: {
+          'Authorization': `Bearer ${user.token}`}})
+      // Each object from backend represents an artwork
+      // Array of objects here
+      const json = await response.json()
+
+      if (response.ok) {
+        //setGallery(json)
+        dispatch({type:'SET_ARTWORKS', payload:json})
       }
     };
   
-    fetchArtworks(); // Call the fetchArtworks function
+    fetchArtworks(); 
   
   }, [dispatch, user]);
   
 
 
   return (
-    <div className="GalleryPage bgDark light flex flex-col  h-full">
+    <div className="flex flex-col h-full GalleryPage bgDark light">
 
-      <div className='self-center text-4xl py-8 headFont font-bold w-80'>
+      <div className='self-center py-8 text-4xl font-bold headFont w-80'>
         <h1 className='light'>Sydney Gallery</h1>
       </div>
 
 
-      <div className='gallery grid lg:grid-cols-4 gap-10 p-4 mx-auto'>
+      <div className='grid gap-10 p-4 mx-auto gallery lg:grid-cols-4'>
         {/* If we have a gallery then map */}
         {gallery && gallery.map((artwork) => (
             <ArtworkDetails key={artwork._id} artwork={artwork} />

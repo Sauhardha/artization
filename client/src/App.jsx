@@ -1,5 +1,5 @@
 import React, {} from 'react';
-import HomePage from './pages/HomePage';
+import HomePage from './pages/homepage/HomePage';
 import GalleryPage from './pages/GalleryPage';
 import Signup from './pages/SignupPage';
 import Login from './pages/LoginPage';
@@ -8,6 +8,7 @@ import Navbar from './components/Navbar';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import AdminPage from './pages/AdminPage';
 import { useAuthContext } from './hooks/useAuthContext';
+import ArtworkPage from './pages/ArtworkPage';
 
 
 
@@ -29,6 +30,7 @@ function App() {
               <Route path="/home" element={<HomePage />} />
               <Route path="/gallery" element={<GalleryPage />} />
               <Route path="/admin" element={<AdminPage />} />
+              <Route path="/artwork/:id" element={<ArtworkPage/>} />
             </>
           ) : (
             // Default route when user is not logged in

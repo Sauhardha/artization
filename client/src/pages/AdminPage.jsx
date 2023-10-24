@@ -12,25 +12,19 @@ function AdminPage() {
   const {gallery, dispatch} = useArtworksContext()
   const {user} = useAuthContext()
 
-
+ 
   useEffect(() => {
     const fetchArtworks = async () => {
-      if (user) { // Check if user exists before making the API request
-        try {
-          const response = await fetch('http://localhost:8080/api/artworks', {
-            headers: {
-              'Authorization': `Bearer ${user.token}`
-            }
-          });
-          //Each object is an artwork
-          const json = await response.json();
-  
-          if (response.ok) {
-            dispatch({ type: 'SET_ARTWORKS', payload: json });
-          }
-        } catch (error) {
-          console.error('Error fetching artworks:', error);
-        }
+      const response = await fetch('http://localhost:8081/api/artworks', {
+        headers: {
+          'Authorization': `Bearer ${user.token}`}})
+      // Each object from backend represents an artwork
+      // Array of objects here
+      const json = await response.json()
+
+      if (response.ok) {
+        //setGallery(json)
+        dispatch({type:'SET_ARTWORKS', payload:json})
       }
     };
   
@@ -41,14 +35,13 @@ function AdminPage() {
   }, [dispatch, user]);
   
 
-
   return (
-    <div className="AdminPage bgDark h-full flex flex-col p-8 justify-center items-center">
+    <div className="flex flex-col items-center justify-center h-full p-8 AdminPage bgDark">
 
       <ArtworkForm />
 
 
-      <div className='gallery grid lg:grid-cols-4 gap-10 p-4 mx-auto text-white p-8'>
+      <div className='grid gap-10 p-4 p-8 mx-auto text-white gallery lg:grid-cols-4'>
         {gallery && gallery.map((artwork) => (
           <ArtworkDetails key={artwork._id} artwork={artwork} isAdminView={true} />
         ))}

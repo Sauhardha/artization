@@ -15,6 +15,10 @@ const artworkSchema = new Schema({
     type: String,
     required: true
   },
+  RaspID:{
+    type: Number,
+    required: true
+  },
   user_id: {
     type: String,
     required: true
