@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "react-typed": "^1.2.0",
+    "swiper": "^10.3.1"
+  }
+}
