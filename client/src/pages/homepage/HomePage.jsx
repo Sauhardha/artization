@@ -3,7 +3,8 @@ import axios from 'axios'
 import { useAuthContext } from '../../hooks/useAuthContext'
 import HomePageArtworks from './HomePageArtworks'
 import HomePageGraphs from './HomePageGraphs'
-import bgbanner from './bg.png'
+import bgbanner from './bg.png';
+import Navbar from '../../components/Navbar'
 
 function HomePage() {
   const { user } = useAuthContext()
@@ -27,7 +28,11 @@ function HomePage() {
   // }, [])
 
   return (
+    <>
+    <Navbar />
+
     <div className="flex justify-center text-white h-max bgDark">
+      
       <div className="flex-col items-center justify-center w-full p-0 rounded shadow-md">
         <div className="flex flex-col justify-center">
           {/* <div
@@ -52,6 +57,8 @@ function HomePage() {
         </div>
       </div>
     </div>
+    </>
+    
   )
 }
 

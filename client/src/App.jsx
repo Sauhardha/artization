@@ -38,13 +38,7 @@ function App() {
           )}
 
           {/* Login page */}
-          {/* Conditionally render the Navbar based on the route */}
-          <Route
-            path="/*"
-            element={
-              window.location.pathname !== '/login' && user ? <Navbar /> : null
-            }
-          />
+          <Route path="/login" element={<Login />} />
 
           {/* If not logged in, access signup */}
           {!user && <Route path="/signup" element={<Signup />} />}

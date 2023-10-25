@@ -1,6 +1,7 @@
 import React from 'react';
 import {useEffect } from 'react';
 import {useAuthContext} from '../hooks/useAuthContext';
+import Navbar from '../components/Navbar';
 
 // Components
 import ArtworkDetails from '../components/ArtworkDetails';
@@ -35,6 +36,8 @@ const GalleryPage = () => {
 
 
   return (
+    <>
+    <Navbar />
     <div className="flex flex-col h-full GalleryPage bgDark light">
 
       <div className='self-center py-8 text-4xl font-bold headFont w-80'>
@@ -49,6 +52,8 @@ const GalleryPage = () => {
         ))}
       </div>
     </div>
+    </>
+    
   );
 }
 
