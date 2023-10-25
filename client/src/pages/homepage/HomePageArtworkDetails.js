@@ -12,7 +12,7 @@ export default function HomePageArtworkDetails({ artwork }) {
          
           <span className="text-sm headFont c1">{artwork.stat}</span>
           <img
-            src={`http://localhost:8081${artwork.imageURL}`}
+            src={`http://localhost:8080${artwork.imageURL}`}
             alt="artwork"
             className="h-40 mt-auto"
           />

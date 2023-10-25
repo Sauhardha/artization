@@ -43,7 +43,7 @@ const ArtworkForm = () => {
     formData.append('image', image);
 
     
-      const res = await axios.post('http://localhost:8081/api/artworks', formData, {
+      const res = await axios.post('http://localhost:8080/api/artworks', formData, {
         headers: {
           'Authorization': `Bearer ${user.token}`,
           'Content-Type': 'multipart/form-data'

@@ -20,7 +20,7 @@ function App() {
     //All components that are nested inside this App component have access to the router
    <div>
     <BrowserRouter>
-        <Navbar />
+        
         <div>
         <Routes>
           {/* Default route when user is logged in */}
@@ -38,7 +38,13 @@ function App() {
           )}
 
           {/* Login page */}
-          <Route path="/login" element={<Login />} />
+          {/* Conditionally render the Navbar based on the route */}
+          <Route
+            path="/*"
+            element={
+              window.location.pathname !== '/login' && user ? <Navbar /> : null
+            }
+          />
 
           {/* If not logged in, access signup */}
           {!user && <Route path="/signup" element={<Signup />} />}

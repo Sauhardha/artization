@@ -15,7 +15,7 @@ function AdminPage() {
  
   useEffect(() => {
     const fetchArtworks = async () => {
-      const response = await fetch('http://localhost:8081/api/artworks', {
+      const response = await fetch('http://localhost:8080/api/artworks', {
         headers: {
           'Authorization': `Bearer ${user.token}`}})
       // Each object from backend represents an artwork
