@@ -28,13 +28,12 @@ const ArtworkSubSectionGraphs = ({ artwork }) => {
 
   useEffect(() => {
     const res = axios
-      .get(`http://localhost:8081/api/artworks/${id}/sessions`, {
+      .get(`http://localhost:8080/api/artworks/${id}/sessions`, {
         headers: {
           Authorization: `Bearer ${user.token}`,
         },
       })
       .then((res) => {
-        console.log(res)
         setMaxima(getMaxima(res.data.slice(0, 2)))
         setData(processData(res.data.slice(0, 2)))
         setState(res.data)

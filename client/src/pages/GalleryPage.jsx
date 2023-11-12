@@ -12,10 +12,9 @@ const GalleryPage = () => {
   const {gallery, dispatch} = useArtworksContext()
   const {user} = useAuthContext()
 
-
   useEffect(() => {
     const fetchArtworks = async () => {
-      const response = await fetch('http://localhost:8081/api/artworks', {
+      const response = await fetch('http://localhost:8080/api/artworks', {
         headers: {
           'Authorization': `Bearer ${user.token}`}})
       // Each object from backend represents an artwork
@@ -33,18 +32,17 @@ const GalleryPage = () => {
   }, [dispatch, user]);
   
 
-
   return (
     <div className="flex flex-col h-full GalleryPage bgDark light">
 
-      <div className='self-center py-8 text-4xl font-bold headFont w-80'>
-        <h1 className='light'>Sydney Gallery</h1>
+      <div className='self-center py-8 text-4xl font-bold headFont '>
+        <h1 className='light'>{gallery && gallery.gallery.displayName}</h1>
       </div>
 
 
       <div className='grid gap-10 p-4 mx-auto gallery lg:grid-cols-4'>
         {/* If we have a gallery then map */}
-        {gallery && gallery.map((artwork) => (
+        {gallery && gallery.artworks.map((artwork) => (
             <ArtworkDetails key={artwork._id} artwork={artwork} />
         ))}
       </div>

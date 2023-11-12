@@ -2,22 +2,53 @@ const Artwork = require('../models/artworkModel')
 const RaspberryPiSession = require('../models/raspberryPiSession')
 const mongoose = require('mongoose')
 const path = require('path')
-const fs = require('fs')
+const fs = require('fs');
+const User = require('../models/userModel')
+const Gallery = require('../models/GalleryModel');
+
 
 // Get all artwork from gallery
-const getGallery = async (req, res) => {
-  const user_id = req.user._id
+const getArtworks = async (req, res) => {
+  const user_id = req.user._id;
 
-  const gallery = await Artwork.find({ user_id }).sort({ createdAt: -1 })
-  const artworks = gallery.map((image) => ({
-    ...image._doc,
-    imageURL: `/images/${image.RaspID}`,
-  }))
+  try {
+    const user = await User.findOne({ _id: user_id });
+    let gallery = [];
 
-  res.status(200).json(artworks)
+    if (user.permissions.includes('artist')) {
+      gallery = await Artwork.find({ artist_email: user.email }).sort({ createdAt: -1 });
+    } else {
+      gallery = await Artwork.find({ galleryId: user.galleryId }).sort({ createdAt: -1 });
+    }
 
-  // res.status(200).json(gallery)
-}
+    const artworks = gallery.map((image) => ({
+      ...image._doc,
+      imageURL: `/images/${image.RaspID}`,
+    }));
+
+  let galleryInfo = {}
+    if(!user.permissions.includes('artist')){
+      galleryInfo = await Gallery.findById(user.galleryId);
+    }
+
+
+
+    
+    const response = {
+      artworks,
+      gallery: {
+        displayName: galleryInfo.displayName,
+        technicalContactEmail: galleryInfo.technicalContactEmail,
+        technicalContactPhone: galleryInfo.technicalContactPhone,
+      },
+    };
+
+    res.status(200).json(response);
+  } catch (error) {
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+
 
 // Get a single artwork
 const getArtworkById = async (req, res) => {
@@ -44,9 +75,7 @@ const getArtworkByRaspId = async (req, res) => {
 
 // Create new artwork
 const createArtwork = async (req, res) => {
-  const { title, desc, stat, RaspID } = req.body
-
-  console.log(title, desc, stat)
+  const { title, desc, artist_email, RaspID } = req.body
 
   let emptyFields = []
 
@@ -56,8 +85,8 @@ const createArtwork = async (req, res) => {
   if (!desc) {
     emptyFields.push('desc')
   }
-  if (!stat) {
-    emptyFields.push('stat')
+  if (!artist_email) {
+    emptyFields.push('artist_email')
   }
 
   if (!RaspID) {
@@ -80,8 +109,21 @@ const createArtwork = async (req, res) => {
         .json({ error: 'Raspberry pi ID is already associated with a panting' })
     }
 
-    const user_id = req.user._id
-    const artwork = await Artwork.create({ title, desc, stat, RaspID, user_id })
+
+    const user_id = req.user._id;
+
+    const user = await User.findOne({_id: user_id})
+
+    if(!user){
+      throw new Error('User does not exist')
+    }
+
+    if(!user.galleryId){
+      throw new Error('User not associated to a gallery')
+
+    }
+
+    const artwork = await Artwork.create({ title, desc, artist_email, RaspID, galleryId: user.galleryId })
     const reponse = { ...artwork._doc, imageURL: `/images/${artwork.RaspID}` }
     res.status(200).json(reponse)
   } catch (error) {
@@ -153,7 +195,6 @@ const sessions = async (req, res) => {
 const getArtworkSessions = async (req, res) => {
   try {
     const { id } = req.params
-    console.log('yella', id)
 
     const artwork = await Artwork.findById(id)
 
@@ -212,7 +253,7 @@ const getHottest = async (req, res) => {
 }
 
 module.exports = {
-  getGallery,
+  getArtworks,
   getArtworkById,
   createArtwork,
   deleteArtwork,

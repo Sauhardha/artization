@@ -6,7 +6,7 @@ export const ArtworksContext = createContext()
 
 
 export const artworksReducer = (state, action) => {
-    console.log(state, action)
+
     switch (action.type) {
         case 'SET_ARTWORKS':
         return {
@@ -14,11 +14,11 @@ export const artworksReducer = (state, action) => {
         }
         case 'CREATE_ARTWORK':
             return {
-                gallery: [action.payload, ...state.gallery]
+                gallery: { artworks: [action.payload, ...state.gallery.artworks], gallery: state.gallery.gallery}
             }
         case 'DELETE_ARTWORK':
             return {
-                gallery: state.gallery.filter((a) => a._id !== action.payload._id)
+                gallery: { artworks: state.gallery.artworks.filter((a) => a._id !== action.payload._id), gallery: state.gallery.gallery}
             }
         default: 
         return state
@@ -28,7 +28,7 @@ export const artworksReducer = (state, action) => {
 
 export const ArtworksContextProvider = ({children}) => {
     const [state, dispatch] = useReducer(artworksReducer, {
-        gallery: null
+        gallery: {artworks: [], gallery: {}}
     })
 
 

@@ -1,7 +1,16 @@
 import { createContext, useReducer, useEffect } from 'react'
+import axios from 'axios'
 
 export const AuthContext = createContext()
 
+
+
+export const axiosInstance = axios.create({
+    baseURL: 'http://localhost:8080/api',
+    // headers: {
+    //   Authorization: `Bearer ${token}`,
+    // },
+  })
 
 // Login is user -> payload from JWT
 export const authReducer = (state, action) => {
@@ -16,26 +25,39 @@ export const authReducer = (state, action) => {
 }
 
 // Default is user is not logged in
-export const AuthContextProvider = ({children}) => {
+export const AuthContextProvider = ({ children }) => {
     const [state, dispatch] = useReducer(authReducer, {
-        user: null
-    })
-
-    // Checking if there is a user in the localStorage (is signed in)
-    useEffect (() => {
-        const user = JSON.parse(localStorage.getItem('user'))
-
-        // If yes value for user is object with email and token
-        if (user) {
-            dispatch({type: 'LOGIN', payload: user})
+      user: null,
+    });
+  
+    useEffect(() => {
+      const storedUser = JSON.parse(localStorage.getItem('user'));
+  
+      const checkPermissions = async () => {
+        try {
+          const response = storedUser && (await axiosInstance.get(`/user/permissions/${storedUser.id}`));
+  
+          if (response && response.data) {
+            const updatedUser = { ...storedUser, permissions: response.data };
+            localStorage.setItem('user', JSON.stringify(updatedUser)); 
+            dispatch({ type: 'LOGIN', payload: updatedUser });
+          }
+        } catch (error) {
+          console.log('Error fetching permissions:', error);
         }
-    }, [])
-
-    console.log('AuthContext state: ', state)
-
+      };
+  
+      if (storedUser) {
+        checkPermissions();
+      } else {
+        console.log('No user found in localStorage');
+      }
+    }, [dispatch]);
+  
+  
     return (
-        <AuthContext.Provider value={{...state, dispatch}}>
-            { children }
-        </AuthContext.Provider>
-    )
-}
+      <AuthContext.Provider value={{ ...state, dispatch }}>
+        {children}
+      </AuthContext.Provider>
+    );
+  };

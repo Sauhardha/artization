@@ -10,7 +10,7 @@ const ArtworkForm = () => {
 
   const [title, setTitle] = useState('');
   const [desc, setDesc] = useState('');
-  const [stat, setStat] = useState('');
+  const [artist_email, setArtistEmail] = useState('');
   const [rpId, setRpId] = useState('');
   const [image, setImage] = useState(null);
   // Error state
@@ -38,12 +38,12 @@ const ArtworkForm = () => {
     const formData = new FormData();
     formData.append('title', title);
     formData.append('desc', desc);
-    formData.append('stat', stat);
+    formData.append('artist_email', artist_email);
     formData.append('RaspID', rpId)
     formData.append('image', image);
 
     
-      const res = await axios.post('http://localhost:8081/api/artworks', formData, {
+      const res = await axios.post('http://localhost:8080/api/artworks', formData, {
         headers: {
           'Authorization': `Bearer ${user.token}`,
           'Content-Type': 'multipart/form-data'
@@ -54,7 +54,7 @@ const ArtworkForm = () => {
         dispatch({ type: 'CREATE_ARTWORK', payload: res.data });
         setTitle('');
         setDesc('');
-        setStat('');
+        setArtistEmail('');
         setImage(null);
         setEmptyFields([]);
         setError(null);
@@ -84,12 +84,13 @@ const ArtworkForm = () => {
         </div>
 
         <div className="grid grid-cols-2 gap-4">
-          <label>Emotion Status: </label>
+          <label>Artist Email: </label>
           <input
             className="p-2 border-2 rounded-lg border-slate-300"
-            type="text"
-            onChange={(e) => setStat(e.target.value)}
-            value={stat}
+            type="email"
+            required
+            onChange={(e) => setArtistEmail(e.target.value)}
+            value={artist_email}
           />
         </div>
         <div className="grid grid-cols-2 gap-4">

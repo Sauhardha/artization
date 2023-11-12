@@ -24,11 +24,10 @@ const Login = () => {
         await login(email, password)
 
         // Redirect to the HomePage after successful login
-        navigate('/home');
     }
 
     return (
-        <div className='flex  justify-center h-max bgDark'>
+        <div className='flex justify-center h-max bgDark'>
             <div className="flex flex-col items-center justify-center h-[35rem] p-12 mt-4 mx-12 bg-white rounded-xl shadow-md">
                 <div className='grid grid-cols-6 gap-4 '>
                     <div className='col-span-0'>

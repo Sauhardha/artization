@@ -12,7 +12,7 @@ export default function HomePageArtworks() {
     const fetchHottestSessions = async () => {
       try {
         const response = await axios.get(
-          'http://localhost:8081/api/artworks/sessions/hottest',
+          'http://localhost:8080/api/artworks/sessions/hottest',
           {
             headers: {
               Authorization: `Bearer ${user.token}`,
@@ -29,8 +29,6 @@ export default function HomePageArtworks() {
     fetchHottestSessions()
   }, [])
 
-
-//   console.log(filteredArtworks)
   return (
     <div
       className="flex flex-col items-center justify-center"
