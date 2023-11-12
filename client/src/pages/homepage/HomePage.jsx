@@ -33,22 +33,10 @@ function HomePage() {
 
     <div className="flex justify-center text-white h-max bgDark">
       
-      <div className="flex-col items-center justify-center w-full p-0 rounded shadow-md">
+      <div className="flex-col items-center justify-center w-full rounded shadow-md">
         <div className="flex flex-col justify-center">
-          {/* <div
-            style={{
-              border: '1px solid red',
-              height: 'rem',
-              // overflow: 'hidden',
-            }}
-          >
-            <img
-              src={bgbanner}
-              alt="background banner"
-              style={{ maxWidth: '100%', maxHeight: '100%' }}
-            />
-          </div> */}
-          <div className="bg-white">
+          <div className="bgDark flex flex-col text-center text-4xl font-bold bodyFont justify-center">
+            <h2>Today's Artization Summary</h2>
             <HomePageGraphs />
           </div>
           <div className="mb-40 ">

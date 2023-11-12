@@ -33,27 +33,14 @@ export default function HomePageArtworks() {
 //   console.log(filteredArtworks)
   return (
     <div
-      className="flex flex-col items-center justify-center"
-      style={{ fontFamily: 'Simplifica', marginTop: '3rem', marginBottom: '4rem'}}
+      className="flex flex-col items-center justify-center bodyFont"
     >
-      <h1
-        style={{
-          fontSize: '36px',
-          fontWeight: 'bold',
-          backgroundImage: 'linear-gradient(90deg, #ff6f61, #6b84d4)',
-          //   backgroundClip: 'text',
-          WebkitBackgroundClip: 'text',
-          //   color: 'transparent',
-          animation: 'fade 2s infinite',
-        }}
-        className="fading-heading"
-      >
-        <span style={{ opacity: 1 }}>Today's </span>
-        <span style={{ opacity: 0.8 }}>Featured </span>
-        <span style={{ opacity: 0.6 }}>Master</span>
-        <span style={{ opacity: 0.4 }}>pieces</span>
+      <h1 className="fading-heading text-2xl">
+        <span style={{ opacity: 1 }}>Recent </span>
+        <span style={{ opacity: 0.8 }}>Master</span>
+        <span style={{ opacity: 0.5 }}>pieces</span>
       </h1>
-      <div className="flex gap-8 mb-14">
+      <div className="flex gap-8">
         {artworks.filter((artwork) => artwork.artwork && artwork).slice(0, 3).map(
             (artwork) =><HomePageArtworkDetails artwork={artwork} />,
           )}

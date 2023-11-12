@@ -1,4 +1,8 @@
 import React from 'react'
+import '../../styles/index.css';
+import ArtworkDetails from '../../components/ArtworkDetails'
+import { useArtworksContext } from '../../hooks/useArtworksContext'
+import { Link } from 'react-router-dom';
 
 export default function HomePageArtworkDetails({ artwork }) {
   console.log('artworling', artwork)
@@ -18,8 +22,6 @@ export default function HomePageArtworkDetails({ artwork }) {
           />
           <div className='flex flex-col items-center justify-center'>
             <h4>{artwork.artwork.title}</h4>
-            <h4>by</h4>
-            <h4>Jason</h4>
           </div>
         </div>
       )}
