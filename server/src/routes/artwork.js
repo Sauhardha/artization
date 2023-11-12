@@ -61,7 +61,7 @@ router.get('/sessions/hottest', getHottest)
 router.post('/', upload.single('image'), createArtwork);
 
 // DELETE a artwork
-router.delete('/:id', deleteArtwork)
+router.delete('/:id', deleteArtwork) 
 
 // UPDATE a artwork
 router.patch('/:id', updateArtwork)

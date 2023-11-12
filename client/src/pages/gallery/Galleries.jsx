@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import CreateNewGallery from '../../components/CreateNewGallery';
 import { axiosInstance } from '../../context/AuthContext';
+import { Link } from 'react-router-dom';
 
 export default function Galleries() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -59,9 +60,9 @@ export default function Galleries() {
   {galleries.map((gallery) => (
     <tr key={gallery._id}>
       <td className="px-4 py-2 border">
-        <a href={`/gallery-management/${gallery._id}`} className="text-blue-500 hover:underline">
+        <Link to={`/gallery-management/${gallery._id}`} className="text-blue-500 hover:underline">
           {gallery.displayName}
-        </a>
+        </Link>
       </td>
       <td className="px-4 py-2 border">
         {new Date(gallery.createdAt).toLocaleDateString(undefined, {

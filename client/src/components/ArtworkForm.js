@@ -13,6 +13,8 @@ const ArtworkForm = () => {
   const [artist_email, setArtistEmail] = useState('');
   const [rpId, setRpId] = useState('');
   const [image, setImage] = useState(null);
+  const [loading, setLoading] = useState(false); 
+  
   // Error state
   const [error, setError] = useState('');
   const [emptyFields, setEmptyFields] = useState([]);
@@ -33,7 +35,7 @@ const ArtworkForm = () => {
     if(!rpId){
         setError('Please provide Raspberry pi ID for painting')
     }
-    
+    setLoading(true); 
     
     const formData = new FormData();
     formData.append('title', title);
@@ -43,21 +45,31 @@ const ArtworkForm = () => {
     formData.append('image', image);
 
     
-      const res = await axios.post('http://localhost:8080/api/artworks', formData, {
-        headers: {
-          'Authorization': `Bearer ${user.token}`,
-          'Content-Type': 'multipart/form-data'
-        }}).catch((error) => {
-            setError(error.response?.data?.error)
-        });
+    try {
+      const res = await axios.post(
+        'http://localhost:8080/api/artworks',
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+            'Content-Type': 'multipart/form-data',
+          },
+        }
+      );
 
-        dispatch({ type: 'CREATE_ARTWORK', payload: res.data });
-        setTitle('');
-        setDesc('');
-        setArtistEmail('');
-        setImage(null);
-        setEmptyFields([]);
-        setError(null);
+      dispatch({ type: 'CREATE_ARTWORK', payload: res.data });
+      setTitle('');
+      setDesc('');
+      setArtistEmail('');
+      setImage(null);
+      setEmptyFields([]);
+      setError(null);
+    } catch (error) {
+      setError(error.response?.data?.error);
+    } finally {
+      setLoading(false); 
+    }
+  
   };
 
   const imageUpload = (e) => {
@@ -125,7 +137,18 @@ const ArtworkForm = () => {
           />
         </div>
 
-        <button className="p-2 rounded-lg bg5 hover:bg-emerald-500 light">Add Artwork</button>
+        <button
+            className={`p-2 rounded-lg bg-blue-500 hover:bg-blue-700 text-white ${
+              loading ? 'cursor-not-allowed opacity-50' : ''
+            }`}
+            disabled={loading} // Disable the button while loading
+          >
+            {loading ? (
+              <div className="w-5 h-5 mx-auto border-t-2 border-white border-opacity-50 rounded-full animate-spin"></div>
+            ) : (
+              'Add Artwork'
+            )}
+          </button>
         {error && <div className="error"> {error} </div>}
       </div>
     </form>

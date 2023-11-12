@@ -3,9 +3,6 @@ import { useArtworksContext } from '../hooks/useArtworksContext'
 import { useAuthContext } from '../hooks/useAuthContext'
 import { Link } from 'react-router-dom'
 
-// Date-fns
-// import formatDistanceToNow from 'date-fns/formatDistanceToNow'
-
 const ArtworkDetails = ({ artwork, isAdminView }) => {
   const { dispatch } = useArtworksContext()
   const { user } = useAuthContext()
