@@ -111,7 +111,6 @@ const HomePageGraphs = () => {
     })
   }
 
-  console.log('yououo',  state.user.firstName)
 
   return (
     <div className="flex items-center mx-40 text-black">
@@ -133,8 +132,8 @@ const HomePageGraphs = () => {
           <h1 className="mb-2 text-lg font-bold">
             The most viewed painting today
           </h1>
-          <p className="mb-2 text-xl font-semibold">Painting: {state.artwork ? state.artwork.title: 'anonymous'}</p>
-          <p className="text-lg text-gray-700">by {state.user ? state.user.firstName : 'anonymous'}</p>
+          <p className="mb-2 text-xl font-semibold">Painting: {state.artwork ? state.artwork?.title: 'anonymous'}</p>
+          <p className="text-lg text-gray-700">by {state.user ? state.user?.firstName : 'anonymous'}</p>
         </div>
       
     </div>

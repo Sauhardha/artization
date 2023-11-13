@@ -23,10 +23,10 @@ function HomePage() {
 
   useEffect(() => {
     AOS.init({
-      duration: 1000, // Animation duration in milliseconds
-      offset: 100,    // Offset (in pixels) from the original trigger point
+      duration: 1000, 
+      offset: 100,    
     });
-  }, []); // Run AOS initialization only once when the component mounts
+  }, []); 
   
   useEffect(() => {
     const animatedHeader = document.getElementById('animatedHeader');
@@ -72,21 +72,21 @@ function HomePage() {
               <div className='flex justify-center border-b-2 border-black'>
                 <h2
                   style={{ transform: 'scaleY(1.9)', /* default scale */ }}
-                  className="py-2 mb-4 md:py-4 md:mb-8 lg:py-6 lg:mb-12 tracking-wider text-5xl"
+                  className="py-2 mb-4 text-5xl tracking-wider md:py-4 md:mb-8 lg:py-6 lg:mb-12"
                 >
                   TODAY'S ARTIZATION SUMMARY
                 </h2>
                 <img
                   src={barcode}
                   alt="barcode"
-                  className='lg:w-40 w-72 md:pt-0 pt-32 lg:self-start self-end'
+                  className='self-end pt-32 lg:w-40 w-72 md:pt-0 lg:self-start'
                 />
               </div>
 
               <div>
               <HomePageGraphs />
               </div>
-              <h2 className='font-medium  text-4xl'>ALL PAINTING STATS</h2>
+              <h2 className='text-4xl font-medium'>ALL PAINTING STATS</h2>
               <div className='flex justify-center'>
                 
                
@@ -109,16 +109,16 @@ function HomePage() {
             <div className='grid grid-cols-2'>
 
             <div className='mx-20 ' data-aos="fade-right">
-            <img src={fluid} alt="fluid" className='w-96 p-8' />
+            <img src={fluid} alt="fluid" className='p-8 w-96' />
             </div>
 
-            <div className='flex flex-col justify-center items-center m-8'>
+            <div className='flex flex-col items-center justify-center m-8'>
               <h2 className='text-4xl'>SEE THE LATEST UPDATES</h2>
               <p className='text-left'>
               Stay connected to the pulse of your gallery, adapting and enhancing the 
               viewer experience based on the immediate and ever-evolving insights from our real-time data analytics.
               </p>
-              <a className='text-cyan-400 mt-8' href='#'>FOLLOW OUR TIPS</a>
+              <a className='mt-8 text-cyan-400' href='#'>FOLLOW OUR TIPS</a>
             </div>
 
 
@@ -127,8 +127,8 @@ function HomePage() {
           </div>
 
           <div className='w-full h-auto'>
-          <div className='bg-black flex h-96 justify-center items-center text-center'>
-            <p className='text-5xl text-white mx-20' data-aos="fade-up">
+          <div className='flex items-center justify-center text-center bg-black h-96'>
+            <p className='mx-20 text-5xl text-white' data-aos="fade-up">
             Track the flow of visitors through the gallery space using path analysis. 
             Identify common routes and focal points to enhance the natural progression of the exhibition.
             </p>
@@ -141,10 +141,10 @@ function HomePage() {
             <div className='grid grid-cols-2'>
 
             <div className='mx-20 ' data-aos="fade-left">
-            <img src={eye} alt="fluid" className='w-96 p-8' />
+            <img src={eye} alt="fluid" className='p-8 w-96' />
             </div>
 
-            <div className='flex flex-col justify-center text-left ml-32 order-first'>
+            <div className='flex flex-col justify-center order-first ml-32 text-left'>
               <h2 className='text-4xl'>FEEDBACK FOR ARTISTIC DIRECTION</h2>
               <p className='text-left'>
               Use emotional analytics as a form of feedback on your artistic direction. 
