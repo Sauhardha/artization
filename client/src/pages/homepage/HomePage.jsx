@@ -76,11 +76,11 @@ function HomePage() {
                 >
                   TODAY'S ARTIZATION SUMMARY
                 </h2>
-                <img
+                {/* <img
                   src={barcode}
                   alt="barcode"
                   className='lg:w-40 w-72 md:pt-0 pt-32 lg:self-start self-end'
-                />
+                /> */}
               </div>
 
               <div>
