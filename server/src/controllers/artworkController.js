@@ -2,38 +2,39 @@ const Artwork = require('../models/artworkModel')
 const RaspberryPiSession = require('../models/raspberryPiSession')
 const mongoose = require('mongoose')
 const path = require('path')
-const fs = require('fs');
+const fs = require('fs')
 const User = require('../models/userModel')
-const Gallery = require('../models/GalleryModel');
-
+const Gallery = require('../models/GalleryModel')
+const csv = require('csv-parser')
 
 // Get all artwork from gallery
 const getArtworks = async (req, res) => {
-  const user_id = req.user._id;
+  const user_id = req.user._id
 
   try {
-    const user = await User.findOne({ _id: user_id });
-    let gallery = [];
+    const user = await User.findOne({ _id: user_id })
+    let gallery = []
 
     if (user.permissions.includes('artist')) {
-      gallery = await Artwork.find({ artist_email: user.email }).sort({ createdAt: -1 });
+      gallery = await Artwork.find({ artist_email: user.email }).sort({
+        createdAt: -1,
+      })
     } else {
-      gallery = await Artwork.find({ galleryId: user.galleryId }).sort({ createdAt: -1 });
+      gallery = await Artwork.find({ galleryId: user.galleryId }).sort({
+        createdAt: -1,
+      })
     }
 
     const artworks = gallery.map((image) => ({
       ...image._doc,
       imageURL: `/images/${image.RaspID}`,
-    }));
+    }))
 
-  let galleryInfo = {}
-    if(!user.permissions.includes('artist')){
-      galleryInfo = await Gallery.findById(user.galleryId);
+    let galleryInfo = {}
+    if (!user.permissions.includes('artist')) {
+      galleryInfo = await Gallery.findById(user.galleryId)
     }
 
-
-
-    
     const response = {
       artworks,
       gallery: {
@@ -41,14 +42,13 @@ const getArtworks = async (req, res) => {
         technicalContactEmail: galleryInfo.technicalContactEmail,
         technicalContactPhone: galleryInfo.technicalContactPhone,
       },
-    };
+    }
 
-    res.status(200).json(response);
+    res.status(200).json(response)
   } catch (error) {
-    res.status(500).json({ error: 'Internal Server Error' });
+    res.status(500).json({ error: 'Internal Server Error' })
   }
-};
-
+}
 
 // Get a single artwork
 const getArtworkById = async (req, res) => {
@@ -109,21 +109,25 @@ const createArtwork = async (req, res) => {
         .json({ error: 'Raspberry pi ID is already associated with a panting' })
     }
 
+    const user_id = req.user._id
 
-    const user_id = req.user._id;
+    const user = await User.findOne({ _id: user_id })
 
-    const user = await User.findOne({_id: user_id})
-
-    if(!user){
+    if (!user) {
       throw new Error('User does not exist')
     }
 
-    if(!user.galleryId){
+    if (!user.galleryId) {
       throw new Error('User not associated to a gallery')
-
     }
 
-    const artwork = await Artwork.create({ title, desc, artist_email, RaspID, galleryId: user.galleryId })
+    const artwork = await Artwork.create({
+      title,
+      desc,
+      artist_email,
+      RaspID,
+      galleryId: user.galleryId,
+    })
     const reponse = { ...artwork._doc, imageURL: `/images/${artwork.RaspID}` }
     res.status(200).json(reponse)
   } catch (error) {
@@ -228,27 +232,126 @@ const getAllSessions = async (req, res) => {
   } catch (err) {}
 }
 
+function sortByRaspIDWithTotalSessions(data) {
+  const raspIDTotalSessions = {}
+
+  // Count the total number of sessions for each RaspID
+  data.forEach((entry) => {
+    const { RaspID, SessionID } = entry
+    const key = RaspID
+    raspIDTotalSessions[key] = (raspIDTotalSessions[key] || 0) + 1
+  })
+
+  // Create an array of objects with RaspID and numberOfSessions
+  const result = Object.entries(raspIDTotalSessions).map(
+    ([RaspID, numberOfSessions]) => {
+      return { RaspID, numberOfSessions }
+    },
+  )
+
+  // Sort the array based on RaspID
+  result.sort((a, b) => a.RaspID.localeCompare(b.RaspID))
+
+  return result
+}
+
+function findRaspiWithMaxSessions(data) {
+  if (!Array.isArray(data) || data.length === 0) {
+    return null
+  }
+
+  // Use reduce to find the object with the maximum numberOfSessions
+  const maxSessionsRaspi = data.reduce((maxRaspi, currentRaspi) => {
+    return currentRaspi.numberOfSessions > maxRaspi.numberOfSessions
+      ? currentRaspi
+      : maxRaspi
+  }, data[0]) // Start with the first element as the initial max
+
+  return maxSessionsRaspi
+}
+
 const getHottest = async (req, res) => {
   try {
-    const top3HappyExcitedSessions = await RaspberryPiSession.find({})
-      .select('-_id RaspID Happy Sad Excited Surprise Neutral')
-      .sort({ Happy: -1, Excited: -1 })
-      .limit(5)
+    let results = []
 
-    const response = []
-    for (const session of top3HappyExcitedSessions) {
-      const artwork = await Artwork.findOne({ RaspID: session.RaspID }).select(
-        '-_id title stat',
-      )
-      response.push({
-        ...session._doc,
-        imageURL: `/images/${session.RaspID}`,
-        artwork,
+    fs.createReadStream('./../myData.csv')
+      .pipe(csv())
+      .on('data', (data) => results.push(data))
+      .on('end', async () => {
+        try {
+          const processed = await sortByRaspIDWithTotalSessions(results);
+
+          const response = []
+          for (const id of processed) {
+            const artwork = await Artwork.findOne({
+              RaspID: id.RaspID,
+            }).select('-_id title artist_email')
+
+            let artist = {}
+            if (artwork) {
+              artist = await User.findOne({
+                email: artwork.artist_email,
+              }).select('firstName lastName')
+            }
+
+            const emotion =  await RaspberryPiSession.findOne({
+              RaspID: id.RaspID,
+            }).sort({ Happy: -1, Excited: -1 }).select('-_id Happy Sad Excited Surprise Neutral')
+
+            response.push({
+              ...id,
+              imageURL: `/images/${id.RaspID}`,
+              artwork,
+              artist: artist,
+              emotion: emotion,
+            })
+          }
+          res.status(200).json(response)
+        } catch (error) {
+          console.error(error)
+          res.status(500).json({ error: 'Internal Server Error' })
+        }
       })
-    }
-    res.status(200).json(response)
   } catch (e) {
-    console.log(e)
+    console.error(e)
+    res.status(500).json({ error: 'Internal Server Error' })
+  }
+}
+
+const emotionsHomePage = async (req, res) => {
+  try {
+    let results = []
+
+    console.log('yooo', req.query)
+
+    const {id} = req.query
+
+    if(id){
+      
+    }
+
+    fs.createReadStream('./../myData.csv')
+      .pipe(csv())
+      .on('data', (data) => results.push(data))
+      .on('end', async () => {
+        try {
+          const processed = sortByRaspIDWithTotalSessions(results)
+
+          const raspiWithMaxSessions = findRaspiWithMaxSessions(processed)
+
+          const responseObj =  await RaspberryPiSession.findOne({
+              RaspID: raspiWithMaxSessions.RaspID,
+            }).sort({ Happy: -1, Excited: -1 })
+
+          res.status(200).json(responseObj)
+        } catch (error) {
+          console.error(error)
+          res.status(500).json({ error: 'Internal Server Error' })
+        }
+      })
+  } catch (e) {
+    console.error(e)
+    res.status(500).json({ error: 'Internal Server Error' })
   }
 }
 
@@ -263,4 +366,5 @@ module.exports = {
   getAllSessions,
   getHottest,
   getArtworkByRaspId,
+  emotionsHomePage,
 }

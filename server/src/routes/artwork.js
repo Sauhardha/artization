@@ -9,7 +9,8 @@ const {
   sessions,
   getArtworkSessions,
   getAllSessions,
-  getHottest
+  getHottest,
+  emotionsHomePage
 } = require('../controllers/artworkController')
 const requireAuth = require('../middleware/requireAuth')
 const multer = require('multer')
@@ -56,6 +57,8 @@ router.get('/:id/sessions', getArtworkSessions)
 router.get('/:id/sessions/all', getAllSessions)
 
 router.get('/sessions/hottest', getHottest)
+
+router.get('/sessions/homepage', emotionsHomePage)
 
 // POST a new artwork
 router.post('/', upload.single('image'), createArtwork);

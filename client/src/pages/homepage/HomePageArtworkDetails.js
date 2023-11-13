@@ -5,6 +5,7 @@ import { useArtworksContext } from '../../hooks/useArtworksContext'
 import { Link } from 'react-router-dom';
 
 export default function HomePageArtworkDetails({ artwork }) {
+  console.log(artwork)
   return (
     <div>
       {artwork && (
@@ -21,6 +22,8 @@ export default function HomePageArtworkDetails({ artwork }) {
           />
           <div className='flex flex-col items-center justify-center'>
             <h4>{artwork.artwork.title}</h4>
+            <h4>by</h4>
+            {artwork.artist ? <h4> {artwork.artist.firstName } {artwork.artist.lastName }</h4>: <h4> Someone</h4>}
           </div>
         </div>
       )}

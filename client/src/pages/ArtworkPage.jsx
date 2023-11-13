@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import ArtworkSubSectionGraphs from '../components/ArtworkSubSectionGraphs';
 import ArtworkSubSectionDetails from '../components/ArtworkSubSectionDetails';
 import Navbar from '../components/Navbar';
+import SubSectionGraph2 from './SubSectionGraph2';
 
 function ArtworkPage() {
     const { id } = useParams()
@@ -41,13 +42,15 @@ function ArtworkPage() {
     return (
         <>
             <Navbar />
-            <div className='flex justify-center h-max mt-20'>
+            <div className='flex justify-center mt-20 h-max'>
                 <div className="flex flex-col items-center justify-center w-full rounded md:space-x-0 md:mx-10 md:flex-row" >
                     <ArtworkSubSectionDetails artwork={artwork} />
+                    <div>
                     <ArtworkSubSectionGraphs artwork={artwork} />
-                    {/* <div className='flex justify-center mx-auto'>
-                    <h1 className='my-40 text-3xl headFont'>artwork</h1>
-                </div> */}
+
+                    <SubSectionGraph2/>
+                    </div>
+                 
 
                 </div>
             </div>

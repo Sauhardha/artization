@@ -92,7 +92,7 @@ const ArtworkSubSectionGraphs = ({ artwork }) => {
   }
 
   return (
-    <div className="flex flex-col justify-between text-left rounded-lg md:w-1/2">
+    <div className="flex flex-col justify-between text-left rounded-lg ">
       <VictoryChart polar domain={{ y: [0, 1] }} style={{ color: 'black' }}>
         <VictoryGroup
           colorScale={['orange', 'green', 'gold', 'tomato']}
