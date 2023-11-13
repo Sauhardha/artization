@@ -113,7 +113,7 @@ const HomePageGraphs = () => {
   }
 
   return (
-    <div className="flex items-center mx-40 text-black">
+    <div className="flex items-center mx-40 text-black drop-shadow shadow-md rounded-xl mb-16">
       <div style={{ minWidth: '50%' }} className="w-2/3">
         <VictoryChart
           height={200}
@@ -128,10 +128,10 @@ const HomePageGraphs = () => {
         </VictoryChart>
       </div>
       <div className="flex flex-col w-1/3 pt-8 ">
-        <h1 className="mb-2 text-lg font-bold">
+        <h1 className="mb-2 text-lg font-bold uppercase tracking-wide">
           The most viewed painting today
         </h1>
-        <p className="mb-2 text-xl font-semibold">Painting: Sunset</p>
+        <p className="mb-2 text-xl font-semibold">"Sunset"</p>
         <p className="text-lg text-gray-700">by Sundah</p>
       </div>
     </div>
