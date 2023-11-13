@@ -43,7 +43,7 @@ const CreateNewGallery = ({ onCancel }) => {
   
 
   return (
-    <div className="max-w-md p-6 mx-auto mt-8 bg-white rounded-md shadow-md">
+    <div className="max-w-lg w-96 mb-12 p-6 mx-auto bg-neutral-50 mt-8 rounded-md drop-shadow shadow-xl">
       <div className="flex justify-end">
         <button
           className="text-gray-700 hover:text-red-500"

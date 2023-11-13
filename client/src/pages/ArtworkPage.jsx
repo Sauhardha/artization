@@ -41,7 +41,7 @@ function ArtworkPage() {
     return (
         <>
             <Navbar />
-            <div className='flex justify-center text-white h-max bgDark'>
+            <div className='flex justify-center h-max mt-20'>
                 <div className="flex flex-col items-center justify-center w-full rounded md:space-x-0 md:mx-10 md:flex-row" >
                     <ArtworkSubSectionDetails artwork={artwork} />
                     <ArtworkSubSectionGraphs artwork={artwork} />

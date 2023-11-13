@@ -36,14 +36,14 @@ const GalleryPage = () => {
   return (
     <>
     <Navbar />
-    <div className="flex flex-col h-full GalleryPage bgDark light">
+    <div className="flex flex-col h-screen GalleryPage mt-12">
 
-      <div className='self-center py-8 text-4xl font-bold headFont '>
-        <h1 className='light'>{gallery && gallery.gallery.displayName}</h1>
+      <div className='self-center py-8 text-5xl font-bold headFont '>
+        <h1 className='text-sky-950 uppercase'>{gallery && gallery.gallery.displayName}</h1>
       </div>
 
 
-      <div className='grid gap-10 p-4 mx-auto gallery lg:grid-cols-4'>
+      <div className='grid gap-10 p-16 mx-auto gallery lg:grid-cols-4'>
         {/* If we have a gallery then map */}
         {gallery && gallery.artworks.map((artwork) => (
             <ArtworkDetails key={artwork._id} artwork={artwork} />

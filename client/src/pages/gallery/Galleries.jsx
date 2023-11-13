@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import CreateNewGallery from '../../components/CreateNewGallery';
 import { axiosInstance } from '../../context/AuthContext';
 import { Link } from 'react-router-dom';
+import Navbar from '../../components/Navbar.js';
 
 export default function Galleries() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -34,37 +35,40 @@ export default function Galleries() {
   }, [page, searchQuery]);
 
   return (
-    <div className="m-2 ">
-      <h1 className="text-3xl">Galleries</h1>
+    <>
+    <Navbar />
+    <div className="mt-12 flex flex-col mx-20">
+      <h1 className="self-start py-8 text-5xl font-bold headFont">ADMINISTRATOR</h1>
+      <h2 className="self-start text-3xl font-medium headFont">Galleries</h2>
 
-      <small>Please manage Portal galleries with this interface.</small>
+      <span>Manage portal galleries with this interface.</span>
 
-      <div className="mt-4">
+      <div className="mt-4 self-center mx-2 md:mx-20">
         <input
           type="text"
-          placeholder="Search by name or email"
-          className="w-full px-4 py-3 border rounded"
+          placeholder="Search by gallery name"
+          className="w-96 px-4 py-3 border rounded-full mb-4 box-shadow shadow-md"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
         />
       </div>
 
-      <table className="w-full border table-fixed">
+      <table className="mx-20 w-[20rem] sm:w-[40rem] xl:w-[80rem] self-center box-shadow bg-neutral-50 shadow-xl text-lg m-4 rounded-xl table-fixed">
         <thead>
           <tr>
-            <th className="px-4 py-2 text-left border">Name</th>
-            <th className="px-4 py-2 text-left border">Setup since</th>
+            <th className="pl-6 py-2 text-left ">Gallery Name</th>
+            <th className="pl-6 py-2 text-left ">Date Created</th>
           </tr>
         </thead>
-        <tbody className="text-xs">
+        <tbody className="text-base headFont">
   {galleries.map((gallery) => (
     <tr key={gallery._id}>
-      <td className="px-4 py-2 border">
+      <td className="px-10 py-3 border-t">
         <Link to={`/gallery-management/${gallery._id}`} className="text-blue-500 hover:underline">
           {gallery.displayName}
         </Link>
       </td>
-      <td className="px-4 py-2 border">
+      <td className="px-10 py-2 border-t border-l">
         {new Date(gallery.createdAt).toLocaleDateString(undefined, {
           year: 'numeric',
           month: 'long',
@@ -112,7 +116,7 @@ export default function Galleries() {
       ) : (
         <div className="mt-4">
           <button
-            className="px-4 py-2 mr-2 text-white bg-blue-500 rounded"
+            className="px-4 py-2 mr-2 text-white bg-blue-500 rounded hover:bg-emerald-500"
             onClick={handleSetupNewClick}
           >
             Setup New
@@ -120,5 +124,6 @@ export default function Galleries() {
         </div>
       )}
     </div>
+    </>
   );
 }

@@ -1,15 +1,17 @@
-import '../styles/index.css'
-import { useArtworksContext } from '../hooks/useArtworksContext'
-import { useAuthContext } from '../hooks/useAuthContext'
-import { Link } from 'react-router-dom'
+import { useState } from 'react';
+import '../styles/index.css';
+import { useArtworksContext } from '../hooks/useArtworksContext';
+import { useAuthContext } from '../hooks/useAuthContext';
+import { Link } from 'react-router-dom';
 
 const ArtworkDetails = ({ artwork, isAdminView }) => {
-  const { dispatch } = useArtworksContext()
-  const { user } = useAuthContext()
+  const { dispatch } = useArtworksContext();
+  const { user } = useAuthContext();
+  const [deleteClicked, setDeleteClicked] = useState(false);
 
   const handleDeleteClick = async () => {
     if (!user) {
-      return
+      return;
     }
 
     const response = await fetch(
@@ -20,19 +22,32 @@ const ArtworkDetails = ({ artwork, isAdminView }) => {
           Authorization: `Bearer ${user.token}`,
         },
       },
-    )
+    );
 
-    const json = await response.json()
+    const json = await response.json();
 
     if (response.ok) {
-      dispatch({ type: 'DELETE_ARTWORK', payload: json })
+      dispatch({ type: 'DELETE_ARTWORK', payload: json });
     }
-  }
+
+    // Reset deleteClicked after successful deletion
+    setDeleteClicked(false);
+  };
+
+  const toggleDeleteClick = () => {
+    if (!deleteClicked) {
+      // On the first click, set deleteClicked to true
+      setDeleteClicked(true);
+    } else {
+      // On the second click, handle the deletion
+      handleDeleteClick();
+    }
+  };
 
   return (
-    <div className="flex flex-col justify-between w-auto gap-3 p-6 text-left rounded-lg shadow-lg artwork-details bg-zinc-800 shadow-slate-950 hover:shadow-slate-700">
+    <div className="flex flex-col justify-between w-auto gap-3 p-6 text-left text-black rounded-lg shadow-xl artwork-details ease duration-300 bg-neutral-200 bg-opacity-30 backdrop-filter backdrop-blur-md shadow-slate-400 hover:shadow-slate-600">
       <Link to={`/artwork/${artwork._id}`} className="text-decoration-none">
-        <h4 className="text-xl headFont">{artwork.title}</h4>
+        <h4 className="text-2xl headFont tracking-wide">{artwork.title}</h4>
         <span className="text-sm font-medium">
           {artwork.desc.length > 100
             ? `${artwork.desc.slice(0, 100)}...`
@@ -43,18 +58,21 @@ const ArtworkDetails = ({ artwork, isAdminView }) => {
         <img
           src={`http://localhost:8080${artwork.imageURL}`}
           alt="artwork"
-          className="mt-auto"
+          className="mt-4 h-52 w-auto mx-auto box-shadow shadow-xl border-4 border-black"
         />
       </Link>
       {isAdminView && (
         <span
-          className="w-8 mt-2 text-xl text-center text-red-500 bg-gray-300 rounded-full cursor-pointer material-symbols-outlined admin-only-del hover:bg-red-300"
-          onClick={handleDeleteClick}
+          className={`w-8 mt-2 text-xl text-center ${
+            deleteClicked ? 'text-white bg-black hover:w-32 hover:bg-black' : 'text-red-500 bg-gray-300'
+          } rounded-full ease duration-300 cursor-pointer material-symbols-outlined admin-only-del hover:bg-red-500 hover:w-20`}
+          onClick={toggleDeleteClick}
         >
-          DELETE
+          {deleteClicked ? 'DELETE' : 'DELETE'}
         </span>
       )}
     </div>
-  )
-}
-export default ArtworkDetails
+  );
+};
+
+export default ArtworkDetails;

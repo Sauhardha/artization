@@ -6,7 +6,7 @@ import Login from './pages/LoginPage';
 import About from './pages/AboutPage';
 import Navbar from './components/Navbar';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import AdminPage from './pages/AdminPage';
+import EditorPage from './pages/EditorPage';
 import { useAuthContext } from './hooks/useAuthContext';
 import ArtworkPage from './pages/ArtworkPage';
 import Users from './pages/Users';
@@ -43,7 +43,7 @@ function App() {
                 <Route path="/" element={<Navigate to="/welcome" />} />
                 <Route path="/home" element={<HomePage />} />
                 <Route path="/gallery" element={<GalleryPage />} />
-                <Route path="/admin" element={<AdminPage />} />
+                <Route path="/editor" element={<EditorPage />} />
                 <Route path="/users" element={<Users />} />
                 <Route path='/galleries' element={<Galleries />} />
                 <Route path="/gallery-management/:id" element={<GalleryManagement />} />

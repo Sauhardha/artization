@@ -1,6 +1,6 @@
 import React from 'react';
 import ArtworkForm from '../components/ArtworkForm';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useAuthContext } from '../hooks/useAuthContext';
 import Navbar from '../components/Navbar';
 
@@ -9,9 +9,19 @@ import Navbar from '../components/Navbar';
 import ArtworkDetails from '../components/ArtworkDetails';
 import { useArtworksContext } from '../hooks/useArtworksContext';
 
-function AdminPage() {
+function EditorPage() {
   const { gallery, dispatch } = useArtworksContext()
   const { user } = useAuthContext()
+
+
+  // Toggle Add new Artwork Form
+  const [ShowCreateArtwork, setShowCreateArtwork] = useState(false);
+  const handleSetupNewArtwork = () => {
+    setShowCreateArtwork(true);
+  };
+  const handleCancelNewArtwork = () => {
+    setShowCreateArtwork(false);
+  };
 
 
   console.log('yoo', gallery)
@@ -48,12 +58,28 @@ function AdminPage() {
   return (
     <>
       <Navbar />
-      <div className="flex flex-col items-center justify-center h-full p-8 AdminPage bgDark">
+      <div className="flex flex-col items-center justify-center h-full p-8 EditorPage mt-12">
+        <h1 className='self-center text-5xl headFont font-bold mb-8'>EDIT YOUR GALLERY</h1>
+       
+      <div className='flex flex-row justify-between'>
+      {ShowCreateArtwork ? (
+        <ArtworkForm onCancel={handleCancelNewArtwork} />
+      ) : (
+        <div className="mt-4">
+          <button
+            className="px-4 py-2 mr-2 text-white bg-cyan-500 rounded duration-300 ease hover:bg-emerald-500 "
+            onClick={handleSetupNewArtwork}
+          >
+            Add Art
+          </button>
+        </div>
+      )}
 
-        <ArtworkForm />
+      </div>
+        
 
 
-        <div className='grid gap-10 p-4 p-8 mx-auto text-white gallery lg:grid-cols-4'>
+        <div className='grid gap-10 p-8 mx-auto text-white gallery lg:grid-cols-4'>
           {gallery && gallery.artworks?.map((artwork) => (
             <ArtworkDetails key={artwork._id} artwork={artwork} isAdminView={true} />
           ))}
@@ -64,4 +90,4 @@ function AdminPage() {
   );
 }
 
-export default AdminPage;
+export default EditorPage;

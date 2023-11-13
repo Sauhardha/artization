@@ -4,7 +4,7 @@ import { useArtworksContext } from '../hooks/useArtworksContext';
 import { useAuthContext } from '../hooks/useAuthContext';
 import axios from 'axios';
 
-const ArtworkForm = () => {
+const ArtworkForm = ({onCancel}) => {
   const { dispatch } = useArtworksContext();
   const { user } = useAuthContext();
 
@@ -81,10 +81,18 @@ const ArtworkForm = () => {
   
 
   return (
-    <form className="p-8 create bgLight rounded-xl" onSubmit={handleSubmit} >
-      <h3 className="text-4xl font-medium tracking-tight headFont">Add a new Artwork</h3>
+    <form className="p-8 create bg-neutral-50 rounded-xl drop-shadow shadow-2xl" onSubmit={handleSubmit} >
+      <div className="flex justify-end">
+        <button
+          className="text-gray-700 hover:text-red-500"
+          onClick={onCancel}
+        >
+          Cancel
+        </button>
+      </div>
+      <h3 className="text-xl text-center border-b-2 pb-8 font-medium tracking-wide headFont">Add a new Artwork</h3>
 
-      <div className="p-8 space-y-4 text-lg">
+      <div className="p-4 space-y-4 text-lg">
         <div className="grid grid-cols-2 gap-4">
           <label>Art Title: </label>
           <input
@@ -106,7 +114,7 @@ const ArtworkForm = () => {
           />
         </div>
         <div className="grid grid-cols-2 gap-4">
-          <label>Raspberry pi ID: </label>
+          <label>Camera ID: </label>
           <input
             className="p-2 border-2 rounded-lg border-slate-300"
             type="number"
@@ -138,7 +146,7 @@ const ArtworkForm = () => {
         </div>
 
         <button
-            className={`p-2 rounded-lg bg-blue-500 hover:bg-blue-700 text-white ${
+            className={`p-2 rounded-lg bg-blue-500 hover:bg-emerald-500 w-32 text-white ${
               loading ? 'cursor-not-allowed opacity-50' : ''
             }`}
             disabled={loading} // Disable the button while loading
@@ -146,7 +154,7 @@ const ArtworkForm = () => {
             {loading ? (
               <div className="w-5 h-5 mx-auto border-t-2 border-white border-opacity-50 rounded-full animate-spin"></div>
             ) : (
-              'Add Artwork'
+              'Create'
             )}
           </button>
         {error && <div className="error"> {error} </div>}

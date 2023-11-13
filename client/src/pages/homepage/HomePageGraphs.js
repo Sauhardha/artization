@@ -8,25 +8,6 @@ import { VictoryChart,
 
 export default function HomePageGraphs() {
   const [data, setData] = useState(getScatterData())
-  const white = "#ffffff";
-  const chartTheme = {
-    axis: {
-      style: {
-        tickLabels: {
-          // this changed the color of numbers to white
-          fill: 'white',
-          
-        },
-        axis: {
-          stroke: 'white',
-         
-        },
-        grid: {
-          stroke: 'transparent'
-        }
-      },
-    },
-  };
 
   function getScatterData() {
     return Array.from({ length: 50 }, (_, index) => ({
@@ -45,11 +26,11 @@ export default function HomePageGraphs() {
   }, [])
 
   return (
-    <div className="mx-auto " style={{width: '25%'}}>
+    <div className="mx-auto w-[30vw]" >
       <div className='' >
         <VictoryChart
           domainPadding={{x: [0, 0]}}
-          theme= {chartTheme}
+          theme= {VictoryTheme.material}
           domain={{ y: [0, 100] }}
           containerComponent={
             <VictoryZoomContainer zoomDomain={{ x: [5, 35], y: [0, 100] }} />
@@ -65,7 +46,7 @@ export default function HomePageGraphs() {
               data: {
                 
                 opacity: ({ datum }) => (datum.y % 5 === 0 ? 1 : 0.7),
-                fill: ({ datum }) => (datum.y % 5 === 0 ? 'tomato' : 'cyan'),
+                fill: ({ datum }) => (datum.y % 5 === 0 ? 'tomato' : 'green'),
               },
             }}
           />

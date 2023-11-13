@@ -34,8 +34,8 @@ const ArtworkSubSectionGraphs = ({ artwork }) => {
         },
       })
       .then((res) => {
-        setMaxima(getMaxima(res.data.slice(0, 2)))
-        setData(processData(res.data.slice(0, 2)))
+        setMaxima(getMaxima(res.data.slice(0, 4)))
+        setData(processData(res.data.slice(0, 4)))
         setState(res.data)
       })
       .catch((err) => console.log(err))
@@ -93,10 +93,10 @@ const ArtworkSubSectionGraphs = ({ artwork }) => {
 
   return (
     <div className="flex flex-col justify-between text-left rounded-lg md:w-1/2">
-      <VictoryChart polar domain={{ y: [0, 1] }} style={{ color: 'white' }}>
+      <VictoryChart polar domain={{ y: [0, 1] }} style={{ color: 'black' }}>
         <VictoryGroup
-          colorScale={['gold', 'orange', 'tomato']}
-          style={{ data: { fillOpacity: 0.2, strokeWidth: 2 } }}
+          colorScale={['orange', 'green', 'gold', 'tomato']}
+          style={{ data: { fillOpacity: 0.2, strokeWidth: 1 } }}
         >
           {data.map((dataPoints, i) => (
             <VictoryArea key={i} data={dataPoints} />
@@ -107,7 +107,7 @@ const ArtworkSubSectionGraphs = ({ artwork }) => {
             key={i}
             dependentAxis
             style={{
-              axisLabel: { padding: 10, fill: 'white' },
+              axisLabel: { padding: 10, fill: 'black' },
               axis: { stroke: 'none' },
               grid: { stroke: 'grey', strokeWidth: 0.25, opacity: 0.5 },
             }}

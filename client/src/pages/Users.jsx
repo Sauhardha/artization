@@ -4,6 +4,7 @@ import { useAuthContext } from '../hooks/useAuthContext'
 import { useNavigate } from 'react-router-dom'
 import Permissions from '../components/Permissions'
 import CustomDialog from '../components/CustomDialog'
+import Navbar from '../components/Navbar.js';
 
 export default function InternalAdmin() {
   const { user } = useAuthContext()
@@ -86,38 +87,41 @@ export default function InternalAdmin() {
 
 
   return (
-    <div className="m-2 ">
-      <h1 className="text-3xl">Users</h1>
+    <>
+    <Navbar />
+    <div className="mt-12 flex flex-col mx-20 mb-12 ">
+    <h1 className="self-start py-8 text-5xl font-bold headFont">ADMINISTRATOR</h1>
+      <h2 className="self-start text-3xl font-medium headFont">Users</h2>
 
-      <small>Please manage Portal users with this interface.</small>
+      <span>Manage portal users with this interface.</span>
 
-      <div className="mt-4">
+      <div className="mt-4 self-center mx-2 md:mx-20">
         <input
           type="text"
           placeholder="Search by name or email"
-          className="w-full px-4 py-3 border rounded"
+          className="w-96 px-4 py-3 border rounded-full mb-4 box-shadow shadow-md"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
         />
       </div>
 
-      <table className="w-full border table-fixed">
+      <table className="mx-20 w-[20rem] sm:w-[40rem] xl:w-[80rem] self-center box-shadow bg-neutral-50 shadow-xl text-lg m-4 rounded-xl table-fixed">
         <thead>
           <tr>
-            <th className="px-4 py-2 text-left border">User</th>
-            <th className="px-4 py-2 text-left border">Email</th>
-            <th className="px-4 py-2 text-left border">Action</th>
+            <th className="pl-6 py-2 text-left ">Username</th>
+            <th className="pl-6 py-2 text-left ">Email</th>
+            <th className="pl-6 py-2 text-left ">Action</th>
           </tr>
         </thead>
-        <tbody className="text-xs">
+        <tbody className="text-base">
           {users.map((user, index) => (
             <tr key={user.id}>
-              <td className="px-4 py-2 border">
+              <td className="px-10 py-2 border-t">
                 {user.firstName && user.firstName}{' '}
                 {user.lastName && user.lastName}
               </td>
-              <td className="px-4 py-2 border">{user.email}</td>
-              <td className="px-4 py-2 border">
+              <td className="px-4 py-2 border-t border-l">{user.email}</td>
+              <td className="px-4 py-2 border-t border-l">
                 {showPermissions[index] ? (
                   <Permissions
                     key={`permissions-${user.id}`}
@@ -127,6 +131,7 @@ export default function InternalAdmin() {
                   />
                 ) : (
                   <>
+                  <div className='flex justify-between my-2'>
                     <button
                       className="px-4 py-2 font-semibold text-blue-700 bg-transparent border border-blue-500 rounded hover:bg-blue-500 hover:text-white hover:border-transparent"
                       onClick={() => togglePermissions(index)}
@@ -134,11 +139,13 @@ export default function InternalAdmin() {
                       Edit Permissions
                     </button>
                     <button
-                    className="px-4 py-2 mr-6 font-semibold text-white bg-red-500 border border-red-500 rounded hover:bg-red-600 hover:border-transparent"
+                    className="px-4 py-2 mr-6 font-semibold text-white bg-red-500
+                    border border-red-500 transition-all ease duration-300 rounded hover:bg-red-600 hover:border-transparent"
                     onClick={() => disconnectUser(user)}
                   >
                     Disconnect User
                   </button>
+                  </div>
                   </>
                 )}
               </td>
@@ -185,5 +192,6 @@ export default function InternalAdmin() {
         </div>
       </div>
     </div>
+    </>
   )
 }

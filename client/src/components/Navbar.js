@@ -17,9 +17,9 @@ const Navbar = () => {
 
   return (
     <header>
-      <div className="flex justify-between px-4 headFont light bgDark">
+      <div className="flex justify-between px-4 headFont drop-shadow shadow-lg">
         <Link to="/home">
-          <img src={logo} alt="logo" className="w-32 invert" />
+          <img src={logo} alt="logo" className="w-32" />
         </Link>
 
         <nav className="flex items-center justify-between w-full linkFont">
@@ -47,7 +47,7 @@ const Navbar = () => {
                 (user.permissions.includes('curator') ||
                   user.permissions.includes('admin')) && (
                   <Link
-                    to="/admin"
+                    to="/editor"
                     className="transition-colors duration-300 ease-in-out hover:text-emerald-400"
                   >
                     Editor
