@@ -1,16 +1,22 @@
 import {useState} from 'react'
 import {useAuthContext} from './useAuthContext'
+import { useNavigate } from 'react-router-dom'; 
+
+
+
 
 export const useLogin = () => {
     const [error, setError] = useState(null)
     const [isLoading, setIsLoading] = useState(null)
     const {dispatch } = useAuthContext()
+    const navigate = useNavigate(); 
+
 
     const login = async (email, password) => {
         setIsLoading(true)
         setError(null)
 
-        const response = await fetch('http://localhost:8080/api/user/login', {
+        const response = await fetch('http://localhost:8080/api/auth/login', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({email, password})
@@ -23,7 +29,7 @@ export const useLogin = () => {
             // setError(json.error)
         }
         if (response.ok) {
-        const json = await response.json()
+            const json = await response.json()
             // Save the user to local storage JWT
             // userController in backend uses (user, token)
             localStorage.setItem('user', JSON.stringify(json))
@@ -31,6 +37,16 @@ export const useLogin = () => {
             //Update AuthContext
             dispatch({type: 'LOGIN', payload: json})
 
+            
+                    if (json) {
+                        if (json.permissions.length > 0) {
+                            navigate('/home');
+                        } else {
+                            navigate('/welcome');
+                        }
+                    }
+                
+            
             setIsLoading(false)
         }
     }

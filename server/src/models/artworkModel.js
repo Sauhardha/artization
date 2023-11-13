@@ -11,7 +11,7 @@ const artworkSchema = new Schema({
     type: String,
     required: true
   },
-  stat: {
+  artist_email: {
     type: String,
     required: true
   },
@@ -19,7 +19,7 @@ const artworkSchema = new Schema({
     type: Number,
     required: true
   },
-  user_id: {
+  galleryId:{
     type: String,
     required: true
   }

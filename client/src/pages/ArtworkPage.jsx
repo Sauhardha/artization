@@ -10,9 +10,8 @@ function ArtworkPage() {
     const { id } = useParams()
     const [artwork, setArtwork] = useState({})
 
-    const { gallery, dispatch } = useArtworksContext()
-    const { user } = useAuthContext()
-    console.log(gallery, artwork)
+    const {gallery, dispatch} = useArtworksContext()
+    const {user} = useAuthContext()
 
     useEffect(() => {
         if (gallery && gallery.length > 0) {
@@ -24,10 +23,8 @@ function ArtworkPage() {
         } else {
             const fetchArtworks = async () => {
                 const response = await fetch(`http://localhost:8080/api/artworks/${id}`, {
-                    headers: {
-                        'Authorization': `Bearer ${user.token}`
-                    }
-                })
+                  headers: {
+                    'Authorization': `Bearer ${user.token}`}})
                 const json = await response.json()
 
                 if (response.ok) {

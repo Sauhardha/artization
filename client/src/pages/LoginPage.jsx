@@ -26,7 +26,6 @@ const Login = () => {
         await login(email, password)
 
         // Redirect to the HomePage after successful login
-        navigate('/home');
     }
 
     return (

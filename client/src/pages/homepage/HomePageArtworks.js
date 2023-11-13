@@ -29,8 +29,6 @@ export default function HomePageArtworks() {
     fetchHottestSessions()
   }, [])
 
-
-//   console.log(filteredArtworks)
   return (
     <div
       className="flex flex-col items-center justify-center bodyFont"

@@ -2,7 +2,7 @@ const express = require('express')
 const Artwork = require('../models/artworkModel')
 const {
   createArtwork,
-  getGallery,
+  getArtworks,
   getArtworkById,
   deleteArtwork,
   updateArtwork,
@@ -23,7 +23,7 @@ router.use(requireAuth)
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, './images/')
+    cb(null, './src/images/')
   },
   filename: (req, file, cb) => {
     try {
@@ -44,7 +44,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage })
 
 // GET all art in gallery
-router.get('/', getGallery)
+router.get('/', getArtworks)
 
 
 
@@ -61,7 +61,7 @@ router.get('/sessions/hottest', getHottest)
 router.post('/', upload.single('image'), createArtwork);
 
 // DELETE a artwork
-router.delete('/:id', deleteArtwork)
+router.delete('/:id', deleteArtwork) 
 
 // UPDATE a artwork
 router.patch('/:id', updateArtwork)

@@ -34,7 +34,6 @@ const ArtworkSubSectionGraphs = ({ artwork }) => {
         },
       })
       .then((res) => {
-        console.log(res)
         setMaxima(getMaxima(res.data.slice(0, 2)))
         setData(processData(res.data.slice(0, 2)))
         setState(res.data)

@@ -6,14 +6,14 @@ export const useSignup = () => {
     const [isLoading, setIsLoading] = useState(null)
     const {dispatch } = useAuthContext()
 
-    const signup = async (email, password) => {
+    const signup = async (firstName, lastName, email, password) => {
         setIsLoading(true)
         setError(null)
 
-        const response = await fetch('http://localhost:8080/api/user/signup', {
+        const response = await fetch('http://localhost:8080/api/auth/signup', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({email, password})
+            body: JSON.stringify({firstName, lastName, email, password})
             
         })
 

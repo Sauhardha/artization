@@ -1,0 +1,15 @@
+8e42241,Sauhardha,5 days ago,login navbar fix
+95b30e4,Sauhardha,5 days ago,login page rehaul
+b5c837a,Sauhardha,5 days ago,login page rehaul
+97479a7,Sauhardha,6 days ago,Merge branch 'dev' into artwork_details
+4218807,ethmoses,6 days ago,more changes
+ed02a07,Sauhardha,12 days ago,resolved conflicts with adding about page
+64c8c25,Sauhardha,3 weeks ago,Added per curator->only see their data
+92b8e46,Sauhardha,3 weeks ago,Protected routes fix and clean styled navbar
+43a119b,Sauhardha,3 weeks ago,Merge branch 'dev' of https://github.com/Sauhardha/artization into dev
+af08926,Sauhardha Pandey,3 weeks ago,Authenticated and Protected Routes Added
+3de0815,Sauhardha Pandey,3 weeks ago,Merge pull request #9 from Sauhardha/navbar_fix
+33906d4,ethmoses,3 weeks ago,Merge branch 'dev' into navbar_fix
+e334fc0,ethmoses,4 weeks ago,navbar
+71c6f09,Sauhardha Pandey,4 weeks ago,CREATE_ARTWORK ...state
+86c07e6,Sauhardha Pandey,4 weeks ago,Huge update! DB items ArtworkSchema + Context, Gallery Display, CREATE & DELETE admin functions.

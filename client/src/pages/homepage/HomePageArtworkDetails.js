@@ -5,7 +5,6 @@ import { useArtworksContext } from '../../hooks/useArtworksContext'
 import { Link } from 'react-router-dom';
 
 export default function HomePageArtworkDetails({ artwork }) {
-  console.log('artworling', artwork)
   return (
     <div>
       {artwork && (

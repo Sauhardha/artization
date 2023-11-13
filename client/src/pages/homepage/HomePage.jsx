@@ -3,16 +3,19 @@ import axios from 'axios'
 import { useAuthContext } from '../../hooks/useAuthContext'
 import HomePageArtworks from './HomePageArtworks'
 import HomePageGraphs from './HomePageGraphs'
-import bgbanner from './bg.png';
-import Navbar from '../../components/Navbar'
+import bgbanner from './bg.png'
+import { useNavigate } from "react-router-dom";
+
 
 function HomePage() {
-  const { user } = useAuthContext()
+  const { user } = useAuthContext();
+  const navigate = useNavigate();
+
 
   // useEffect(() => {
 
   //   const fetchHottestSessions = async () => {
-  //     const response = await axios.get('http://localhost:8081/api/artworks/sessions/hottest', {
+  //     const response = await axios.get('http://localhost:8080/api/artworks/sessions/hottest', {
   //       headers: {
   //         Authorization: `Bearer ${user.token}`,
   //       },
@@ -26,6 +29,7 @@ function HomePage() {
 
   //   fetchHottestSessions()
   // }, [])
+ 
 
   return (
     <>

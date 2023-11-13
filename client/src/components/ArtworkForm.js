@@ -10,9 +10,11 @@ const ArtworkForm = () => {
 
   const [title, setTitle] = useState('');
   const [desc, setDesc] = useState('');
-  const [stat, setStat] = useState('');
+  const [artist_email, setArtistEmail] = useState('');
   const [rpId, setRpId] = useState('');
   const [image, setImage] = useState(null);
+  const [loading, setLoading] = useState(false); 
+  
   // Error state
   const [error, setError] = useState('');
   const [emptyFields, setEmptyFields] = useState([]);
@@ -33,31 +35,41 @@ const ArtworkForm = () => {
     if(!rpId){
         setError('Please provide Raspberry pi ID for painting')
     }
-    
+    setLoading(true); 
     
     const formData = new FormData();
     formData.append('title', title);
     formData.append('desc', desc);
-    formData.append('stat', stat);
+    formData.append('artist_email', artist_email);
     formData.append('RaspID', rpId)
     formData.append('image', image);
 
     
-      const res = await axios.post('http://localhost:8080/api/artworks', formData, {
-        headers: {
-          'Authorization': `Bearer ${user.token}`,
-          'Content-Type': 'multipart/form-data'
-        }}).catch((error) => {
-            setError(error.response?.data?.error)
-        });
+    try {
+      const res = await axios.post(
+        'http://localhost:8080/api/artworks',
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+            'Content-Type': 'multipart/form-data',
+          },
+        }
+      );
 
-        dispatch({ type: 'CREATE_ARTWORK', payload: res.data });
-        setTitle('');
-        setDesc('');
-        setStat('');
-        setImage(null);
-        setEmptyFields([]);
-        setError(null);
+      dispatch({ type: 'CREATE_ARTWORK', payload: res.data });
+      setTitle('');
+      setDesc('');
+      setArtistEmail('');
+      setImage(null);
+      setEmptyFields([]);
+      setError(null);
+    } catch (error) {
+      setError(error.response?.data?.error);
+    } finally {
+      setLoading(false); 
+    }
+  
   };
 
   const imageUpload = (e) => {
@@ -84,12 +96,13 @@ const ArtworkForm = () => {
         </div>
 
         <div className="grid grid-cols-2 gap-4">
-          <label>Emotion Status: </label>
+          <label>Artist Email: </label>
           <input
             className="p-2 border-2 rounded-lg border-slate-300"
-            type="text"
-            onChange={(e) => setStat(e.target.value)}
-            value={stat}
+            type="email"
+            required
+            onChange={(e) => setArtistEmail(e.target.value)}
+            value={artist_email}
           />
         </div>
         <div className="grid grid-cols-2 gap-4">
@@ -124,7 +137,18 @@ const ArtworkForm = () => {
           />
         </div>
 
-        <button className="p-2 rounded-lg bg5 hover:bg-emerald-500 light">Add Artwork</button>
+        <button
+            className={`p-2 rounded-lg bg-blue-500 hover:bg-blue-700 text-white ${
+              loading ? 'cursor-not-allowed opacity-50' : ''
+            }`}
+            disabled={loading} // Disable the button while loading
+          >
+            {loading ? (
+              <div className="w-5 h-5 mx-auto border-t-2 border-white border-opacity-50 rounded-full animate-spin"></div>
+            ) : (
+              'Add Artwork'
+            )}
+          </button>
         {error && <div className="error"> {error} </div>}
       </div>
     </form>
