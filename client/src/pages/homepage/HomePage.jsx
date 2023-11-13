@@ -68,7 +68,7 @@ function HomePage() {
 
         <div className="flex-col items-center justify-center w-full rounded shadow-md">
           <div className="flex flex-col justify-center">
-            <div className="flex flex-col mt-8 text-center text-5xl font-bold justify-center opacity-0 transform translate-y-[-50px] transition-transform duration-700 ease" id="animatedHeader">
+            <div className="flex flex-col mt-8 text-center  font-bold justify-center opacity-0 transform translate-y-[-50px] transition-transform duration-700 ease" id="animatedHeader">
               <div className='flex justify-center border-b-2 border-black'>
                 <h2
                   style={{ transform: 'scaleY(1.9)', /* default scale */ }}
@@ -85,7 +85,14 @@ function HomePage() {
 
               <div>
               <HomePageGraphs />
+              
               </div>
+
+              <div className="mb-80 mt-20 text-2xl">
+              <HomePageArtworks artworks={artworks}/>
+            </div>
+              
+
               <h2 className='font-medium  text-4xl'>ALL PAINTING STATS</h2>
               <div className='flex justify-center'>
                 
@@ -97,15 +104,7 @@ function HomePage() {
               
             </div>
 
-            <div className="mb-40 ">
-              <HomePageArtworks artworks={artworks}/>
-            </div>
-
-
-          </div>
-
-
-          <div className='w-full h-auto my-10'>
+            <div className='w-full h-auto my-10'>
             <div className='grid grid-cols-2'>
 
             <div className='mx-20 ' data-aos="fade-right">
@@ -125,6 +124,14 @@ function HomePage() {
 
             </div>
           </div>
+
+            
+
+
+          </div>
+
+
+          
 
           <div className='w-full h-auto'>
           <div className='bg-black flex h-96 justify-center items-center text-center'>
