@@ -35,7 +35,6 @@ function App() {
   return (
     <div>
       <BrowserRouter>
-        <Navbar />
         <div>
           <Routes>
             {/* Default route when user is logged in */}

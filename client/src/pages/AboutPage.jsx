@@ -1,5 +1,4 @@
 import React from 'react';
-import Typed from 'react-typed';
 import Laptop from "../images/laptop.jpg"
 import Single from "../images/single.png"
 import Double from "../images/double.png"
@@ -15,13 +14,13 @@ function AboutPage() {
     <div>
 
       <div>
-        <div className=''>
+        <div className='bgDark'>
         <a href='/login'>
               <button className='w-20 m-8 text-white h-auto rounded-lg text-3xl hover:bg-emerald-500 ease duration-300'>
                 &larr;
               </button>
             </a>
-          <div className="text-white md:p-16 p-2">
+          <div className="text-white md:p-16 p-2 ">
             
             <div className="mx-auto p-8 mt-[-96px] w-full h-auto mx-auto text-center flex flex-col justify-center">
               <img src={logo} alt="logo" className='lg:w-40 w-72 md:pt-0 pt-32 lg:self-start self-center invert' />
@@ -37,7 +36,7 @@ function AboutPage() {
 
                 <div className='col-span-6 text-left'>
                   <p className="md:text-5xl sm:text-4xl text-xl col-span font-bold py-4">A fast, flexible service for</p>
-                  <Typed className='md:text-5xl sm:text-4xl text-xl font-bold' strings={["Artists", "Curators", "Art Analytics"]} typeSpeed={120} backSpeed={140} loop />
+                  <p className='md:text-5xl sm:text-4xl text-xl font-bold' typeSpeed={120} backSpeed={140} loop> Artists and Curators </p>
                   <p className='md:text-2xl text-xl font-bold text-gray-500 pt-12'>Monitor your artwork's emotional analytics to understand your audience's interests</p>
                   <button className="bg3 w-[200px] rounded-md font-medium my-6 mx-auto py-3 text-black hover:bg-blue-500 hover:text-white">Get Started</button>
 

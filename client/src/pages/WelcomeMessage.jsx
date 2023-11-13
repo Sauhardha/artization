@@ -1,8 +1,12 @@
 import React from 'react';
+import Navbar from '../components/Navbar';
 
 const WelcomeMessage = () => {
   return (
+    <>
+    <Navbar />
     <div className="flex flex-col items-start h-screen py-8 bg-gray-100 md:px-16 sm:px-3">
+      
       <h1 className="mb-4 text-3xl font-bold">
         Welcome to the Artization portal!
       </h1>
@@ -23,6 +27,7 @@ const WelcomeMessage = () => {
         </ul>
       </div>
     </div>
+    </>
   );
 };
 

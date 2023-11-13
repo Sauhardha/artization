@@ -5,6 +5,7 @@ import HomePageArtworks from './HomePageArtworks'
 import HomePageGraphs from './HomePageGraphs'
 import bgbanner from './bg.png'
 import { useNavigate } from "react-router-dom";
+import Navbar from '../../components/Navbar'
 
 
 function HomePage() {
