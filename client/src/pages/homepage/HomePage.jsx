@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useAuthContext } from '../../hooks/useAuthContext'
 import HomePageArtworks from './HomePageArtworks'
 import HomePageGraphs from './HomePageGraphs'
+import HomePageGraph2 from './HomePageGraph2'
 import bgbanner from './bg.png'
 import { useNavigate } from "react-router-dom";
 import Navbar from '../../components/Navbar'
@@ -16,8 +17,9 @@ import 'aos/dist/aos.css'; // Import the styles
 
 
 function HomePage() {
-  const { user } = useAuthContext();
   const navigate = useNavigate();
+  const { user } = useAuthContext()
+  const [artworks, setArtworks] = useState([])
 
   useEffect(() => {
     AOS.init({
@@ -25,15 +27,36 @@ function HomePage() {
       offset: 100,    // Offset (in pixels) from the original trigger point
     });
   }, []); // Run AOS initialization only once when the component mounts
-
-  // In your JavaScript (useEffect or wherever you handle page load)
+  
   useEffect(() => {
     const animatedHeader = document.getElementById('animatedHeader');
     if (animatedHeader) {
       animatedHeader.classList.remove('opacity-0', 'translate-y-[-50px]');
       animatedHeader.classList.add('translate-y-0');
     }
-  }, []); // Run this effect only once on component mount
+  }, []); 
+
+
+  useEffect(() => {
+    const fetchHottestSessions = async () => {
+      try {
+        const response = await axios.get(
+          'http://localhost:8080/api/artworks/sessions/hottest',
+          {
+            headers: {
+              Authorization: `Bearer ${user.token}`,
+            },
+          },
+        )
+
+        if (response.status === 200) {
+          setArtworks(response.data)
+        }
+      } catch (e) {}
+    }
+
+    fetchHottestSessions()
+  }, [])
 
 
 
@@ -60,19 +83,29 @@ function HomePage() {
                 />
               </div>
 
-
+              <div>
               <HomePageGraphs />
+              </div>
+              <h2 className='font-medium  text-4xl'>ALL PAINTING STATS</h2>
+              <div className='flex justify-center'>
+                
+               
+                {artworks && <HomePageGraph2 artworks={artworks}/>}
+         
+              
+              </div>
+              
             </div>
 
             <div className="mb-40 ">
-              <HomePageArtworks />
+              <HomePageArtworks artworks={artworks}/>
             </div>
 
 
           </div>
 
 
-          <div className='w-full h-auto'>
+          <div className='w-full h-auto my-10'>
             <div className='grid grid-cols-2'>
 
             <div className='mx-20 ' data-aos="fade-right">
@@ -94,8 +127,8 @@ function HomePage() {
           </div>
 
           <div className='w-full h-auto'>
-          <div className='bg-black flex h-80 justify-center items-center text-center'>
-            <p className='text-4xl text-white mx-20' data-aos="fade-up">
+          <div className='bg-black flex h-96 justify-center items-center text-center'>
+            <p className='text-5xl text-white mx-20' data-aos="fade-up">
             Track the flow of visitors through the gallery space using path analysis. 
             Identify common routes and focal points to enhance the natural progression of the exhibition.
             </p>
@@ -111,13 +144,13 @@ function HomePage() {
             <img src={eye} alt="fluid" className='w-96 p-8' />
             </div>
 
-            <div className='flex flex-col justify-center text-left m-8 order-first'>
+            <div className='flex flex-col justify-center text-left ml-32 order-first'>
               <h2 className='text-4xl'>FEEDBACK FOR ARTISTIC DIRECTION</h2>
               <p className='text-left'>
               Use emotional analytics as a form of feedback on your artistic direction. 
               Understand which emotional tones are more prevalent and consider adjusting your work accordingly.
               </p>
-              <a>SEE OUR TIPS</a>
+              
             </div>
 
 

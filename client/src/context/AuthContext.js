@@ -52,7 +52,7 @@ export const AuthContextProvider = ({ children }) => {
       } else {
         console.log('No user found in localStorage');
       }
-    }, [dispatch]);
+    }, []);
   
   
     return (

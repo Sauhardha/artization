@@ -5,10 +5,19 @@ import { useParams } from 'react-router-dom';
 import ArtworkSubSectionGraphs from '../components/ArtworkSubSectionGraphs';
 import ArtworkSubSectionDetails from '../components/ArtworkSubSectionDetails';
 import Navbar from '../components/Navbar';
+import SubSectionGraph2 from './SubSectionGraph2';
+import AOS from 'aos';
 
 function ArtworkPage() {
     const { id } = useParams()
     const [artwork, setArtwork] = useState({})
+
+    useEffect(() => {
+        AOS.init({
+          duration: 1000, // Animation duration in milliseconds
+          offset: 100,    // Offset (in pixels) from the original trigger point
+        });
+      }, []); // Run AOS initialization only once when the component mounts
 
     const {gallery, dispatch} = useArtworksContext()
     const {user} = useAuthContext()
@@ -41,13 +50,20 @@ function ArtworkPage() {
     return (
         <>
             <Navbar />
-            <div className='flex justify-center h-max mt-20'>
+            <div className='flex justify-center mt-20 h-max'>
                 <div className="flex flex-col items-center justify-center w-full rounded md:space-x-0 md:mx-10 md:flex-row" >
+
                     <ArtworkSubSectionDetails artwork={artwork} />
-                    <ArtworkSubSectionGraphs artwork={artwork} />
-                    {/* <div className='flex justify-center mx-auto'>
-                    <h1 className='my-40 text-3xl headFont'>artwork</h1>
-                </div> */}
+                    <div className='flex-col h-auto mb-12'>
+                    <div className='w-[40vw]'  data-aos="fade-down">
+                        <ArtworkSubSectionGraphs artwork={artwork} />
+                    </div>
+
+                    <div className='w-[40vw'  data-aos="fade-up">
+                        <SubSectionGraph2/>
+                    </div>
+                    </div>
+                 
 
                 </div>
             </div>
