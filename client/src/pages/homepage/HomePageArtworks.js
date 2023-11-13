@@ -8,7 +8,7 @@ export default function HomePageArtworks({artworks}) {
     <div
       className="flex flex-col items-center justify-center bodyFont"
     >
-      <h1 className="text-2xl fading-heading">
+      <h1 className="text-2xl fading-heading uppercase">
         <span style={{ opacity: 1 }}>Recent </span>
         <span style={{ opacity: 0.8 }}>Master</span>
         <span style={{ opacity: 0.5 }}>pieces</span>

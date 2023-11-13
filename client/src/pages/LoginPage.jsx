@@ -51,8 +51,8 @@ const Login = () => {
                             </div>
 
                             <div className='py-6 text-lg font-bold'>
-                                <span>Don't have an account? </span>
-                                <span className="text-blue-600"><a href="/signup">Contact us.</a></span>
+                                <span>Don't have an account? </span> 
+                                <span className="text-blue-600"><a href="">Contact us.</a></span> {/* Signup page in this href */}
                             </div>
 
                             {/* Login Form */}

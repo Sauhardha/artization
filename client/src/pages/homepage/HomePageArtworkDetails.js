@@ -18,7 +18,7 @@ export default function HomePageArtworkDetails({ artwork }) {
           <img
             src={`http://localhost:8080${artwork.imageURL}`}
             alt="artwork"
-            className="h-40 mt-auto"
+            className="w-80 h-auto mt-auto"
           />
           <div className='flex flex-col items-center justify-center'>
             <h4>{artwork.artwork.title}</h4>

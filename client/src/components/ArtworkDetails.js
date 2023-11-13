@@ -64,8 +64,8 @@ const ArtworkDetails = ({ artwork, isAdminView }) => {
       {isAdminView && (
         <span
           className={`w-8 mt-2 text-xl text-center ${
-            deleteClicked ? 'text-white bg-black hover:w-32 hover:bg-black' : 'text-red-500 bg-gray-300'
-          } rounded-full ease duration-300 cursor-pointer material-symbols-outlined admin-only-del hover:bg-red-500 hover:w-20`}
+            deleteClicked ? 'text-white bg-black hover:w-32 hover:bg-black hover:text-white' : 'text-red-500 bg-gray-300 hover:bg-red-500'
+          } rounded-full ease duration-300 cursor-pointer material-symbols-outlined admin-only-del hover:w-20`}
           onClick={toggleDeleteClick}
         >
           {deleteClicked ? 'DELETE' : 'DELETE'}
