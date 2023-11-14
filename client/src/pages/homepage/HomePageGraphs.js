@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-// import { VictoryChart, VictoryZoomContainer, VictoryScatter } from 'victory'
+//import { VictoryChart, VictoryTheme, VictoryZoomContainer, VictoryScatter } from 'victory'
 
 // export default function HomePageGraphs() {
 //   const [data, setData] = useState(getScatterData())
@@ -45,7 +45,7 @@ import React, { useState, useEffect } from 'react'
 //   )
 // }
 
-import { VictoryChart, VictoryBar, Bar } from 'victory'
+import { VictoryChart, VictoryBar, Bar, VictoryTheme } from 'victory'
 import axios from 'axios'
 import { useAuthContext } from '../../hooks/useAuthContext'
 
@@ -113,9 +113,10 @@ const HomePageGraphs = () => {
   }
 
   return (
-    <div className="flex items-center mx-40 text-black drop-shadow shadow-md rounded-xl mb-16">
+    <div className="flex items-center mx-40 text-black drop-shadow shadow-xl rounded-xl mb-16">
       <div style={{ minWidth: '50%' }} className="w-2/3">
         <VictoryChart
+          theme={VictoryTheme.material}
           height={200}
           width={400}
           domainPadding={{ x: 30, y: [0, 20] }}

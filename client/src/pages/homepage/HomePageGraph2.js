@@ -1,5 +1,5 @@
 import React from 'react';
-import { VictoryChart, VictoryStack, VictoryBar, VictoryAxis, VictoryLegend } from 'victory';
+import { VictoryChart, VictoryTheme, VictoryStack, VictoryBar, VictoryAxis, VictoryLegend } from 'victory';
 
 const emotionsToDataset = (emotions) => {
   if (!emotions || emotions.length === 0) {
@@ -33,7 +33,7 @@ const HomePageGraph2 = ({ artworks }) => {
 
   return (
     <div className="w-1/2">
-      <VictoryChart height={400} width={600} domainPadding={{ x: 60, y: 0 }}>
+      <VictoryChart theme={VictoryTheme.material} height={400} width={600} domainPadding={{ x: 60, y: 0 }}>
         <VictoryStack colorScale={colorScale}>
           {dataset.map((data, i) => (
             <VictoryBar data={data} key={i} labels={({ datum }) => `${datum.y.toFixed(2)}%`} />

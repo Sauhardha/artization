@@ -28,13 +28,7 @@ function HomePage() {
     });
   }, []); // Run AOS initialization only once when the component mounts
 
-  useEffect(() => {
-    const animatedHeader = document.getElementById('animatedHeader');
-    if (animatedHeader) {
-      animatedHeader.classList.remove('opacity-0', 'translate-y-[-50px]');
-      animatedHeader.classList.add('translate-y-0');
-    }
-  }, []);
+  
 
 
   useEffect(() => {
@@ -68,53 +62,29 @@ function HomePage() {
 
         <div className="flex-col items-center justify-center w-full rounded shadow-md">
           <div className="flex flex-col justify-center">
-            <div className="flex flex-col mt-8 text-center  font-bold justify-center opacity-0 transform translate-y-[-50px] transition-transform duration-700 ease" id="animatedHeader">
-              <div className='flex justify-center border-b-2 border-black'>
-                <h2
-                  style={{ transform: 'scaleY(1.9)', /* default scale */ }}
-                  className="py-2 mb-4 md:py-4 md:mb-8 lg:py-6 lg:mb-12 tracking-wider text-5xl"
-                >
+            <div className="flex flex-col mt-8 text-center  font-bold justify-center">
+
+              <div className='flex flex-col justify-center' data-aos="fade-down">
+                <h2 className="py-2 mb-4 md:py-4 md:mb-8 lg:py-6 lg:mb-12 tracking-wide text-5xl">
                   TODAY'S ARTIZATION SUMMARY
                 </h2>
-                {/* <img
-                  src={barcode}
-                  alt="barcode"
-                  className='lg:w-40 w-72 md:pt-0 pt-32 lg:self-start self-end'
-                /> */}
               </div>
 
-              <div>
-                <HomePageGraphs />
-
-              </div>
-
-              <div className="h-auto text-lg">
+              <div className="h-screen text-lg" data-aos="fade-up">
                 <HomePageArtworks artworks={artworks} />
               </div>
 
-              <div className='w-full h-auto mb-16'>
-                <div className='grid grid-cols-2 drop-shadow shadow-md'>
+              <div className='w-full h-auto'>
+            <div className='bgDark flex h-96 justify-center items-center text-center'>
+              <p className='text-5xl font-thin tracking-widest text-white mx-20' data-aos="fade-up">
+                Track the flow of visitors through the gallery and <br></br> enhance the natural progression of the exhibition.
+              </p>
+            </div>
 
-                  <div className='mx-20 ' data-aos="fade-left">
-                    <img src={eye} alt="fluid" className='w-96 p-2' />
-                  </div>
+          </div>
 
-                  <div className='flex flex-col justify-center text-left ml-80 order-first '>
-                    <h2 className='text-4xl'>FEEDBACK FOR ARTISTIC DIRECTION</h2>
-                    <p className='text-left font-medium mt-4'>
-                      Use emotional analytics as a form of feedback on your artistic direction.
-                      Understand which emotional tones are more prevalent and consider adjusting your work accordingly.
-                    </p>
-
-                  </div>
-
-
-
-                </div>
-              </div>
-
-              <div className='mx-auto border-2 border-black rounded-xl p-8'>
-                <h2 className='font-medium text-4xl'>DAILY OVERVIEW</h2>
+              <div className='mx-20 mt-8 bg-neutral-50 box-shadow shadow-xl rounded-xl p-8'>
+                <h2 className='font-bold text-5xl'>DAILY OVERVIEW</h2>
                 <div className='flex justify-center'>
 
 
@@ -125,9 +95,7 @@ function HomePage() {
 
               </div>
 
-            </div>
-
-            <div className='w-full h-auto my-10'>
+              <div className='w-full h-auto my-10'>
               <div className='grid grid-cols-2'>
 
                 <div className='mx-20 ' data-aos="fade-right">
@@ -148,23 +116,65 @@ function HomePage() {
               </div>
             </div>
 
+              <div>
+                <HomePageGraphs />
 
+              </div>
 
+            
 
-          </div>
+              
 
+              
 
+              
 
+             
 
-          <div className='w-full h-auto'>
-            <div className='bg-black flex h-96 justify-center items-center text-center'>
-              <p className='text-5xl text-white mx-20' data-aos="fade-up">
-                Track the flow of visitors through the gallery space using path analysis.
-                Identify common routes and focal points to enhance the natural progression of the exhibition.
-              </p>
             </div>
 
+            
+
+
+
+
           </div>
+
+
+
+
+          
+
+          <div className='w-full h-auto'>
+                <div className='grid grid-cols-2 border-b border-black'>
+
+                  <div className='mx-20 ' data-aos="fade-left">
+                    <img src={eye} alt="fluid" className='w-96 p-2' />
+                  </div>
+
+                  <div className='flex flex-col justify-center text-left ml-80 order-first '>
+                    <h2 className='text-4xl'>FEEDBACK FOR ARTISTIC DIRECTION</h2>
+                    <p className='text-left font-medium mt-4'>
+                      Use emotional analytics as a form of feedback on your artistic direction.
+                      Understand which emotional tones are more prevalent and consider adjusting your work accordingly.
+                    </p>
+
+                  </div>
+
+
+
+                </div>
+            </div>
+
+            <div className='w-full h-auto bgDark text-white p-8'>
+              <ul className='flex flex-row gap-20 justify-center mx-auto'>
+                <a href="/gallery"><li className='hover:text-emerald-500'>GALLERY</li></a>
+                <a href="/home"><li className='hover:text-sky-500'>BACK TO TOP</li></a>
+                
+                
+              </ul>
+              <span className='text-xs'>Artization Technology 2023 &#174;</span>
+            </div>
 
 
 
