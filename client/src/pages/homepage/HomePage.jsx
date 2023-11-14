@@ -70,7 +70,7 @@ function HomePage() {
                 </h2>
               </div>
 
-              <div className="h-screen text-lg" data-aos="fade-up">
+              <div className="h-screen text-lg" data-aos="fade-up" data-aos-duration="3000">
                 <HomePageArtworks artworks={artworks} />
               </div>
 
