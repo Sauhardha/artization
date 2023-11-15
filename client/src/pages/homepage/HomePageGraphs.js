@@ -1,49 +1,4 @@
 import React, { useState, useEffect } from 'react'
-//import { VictoryChart, VictoryTheme, VictoryZoomContainer, VictoryScatter } from 'victory'
-
-// export default function HomePageGraphs() {
-//   const [data, setData] = useState(getScatterData())
-
-//   function getScatterData() {
-//     return Array.from({ length: 50 }, (_, index) => ({
-//       x: random(1, 50),
-//       y: random(10, 90),
-//       size: random(8) + 3,
-//     }))
-//   }
-
-//   function random(min, max) {
-//     return Math.floor(Math.random() * (max - min + 1)) + min
-//   }
-
-//   useEffect(() => {
-//     setData(getScatterData())
-//   }, [])
-
-//   return (
-//     <div className="mx-40" style={{width: '31%'}}>
-//       <div className='' >
-//         <VictoryChart
-//           domain={{ y: [0, 100] }}
-//           containerComponent={
-//             <VictoryZoomContainer zoomDomain={{ x: [5, 35], y: [0, 100] }} />
-//           }
-
-//         >
-//           <VictoryScatter
-//             data={data}
-//             style={{
-//               data: {
-//                 opacity: ({ datum }) => (datum.y % 5 === 0 ? 1 : 0.7),
-//                 fill: ({ datum }) => (datum.y % 5 === 0 ? 'tomato' : 'black'),
-//               },
-//             }}
-//           />
-//         </VictoryChart>
-//       </div>
-//     </div>
-//   )
-// }
 
 import { VictoryChart, VictoryBar, Bar, VictoryTheme } from 'victory'
 import axios from 'axios'
@@ -111,7 +66,6 @@ const HomePageGraphs = () => {
     })
   }
 
-
   return (
     <div className="flex items-center mx-40 mb-16 text-black shadow-xl drop-shadow rounded-xl">
       <div style={{ minWidth: '50%' }} className="w-2/3">
@@ -133,8 +87,8 @@ const HomePageGraphs = () => {
           <h1 className="mb-2 text-lg font-bold">
             The most viewed painting today
           </h1>
-          <p className="mb-2 text-xl font-semibold">Painting: {state.artwork ? state.artwork?.title: 'anonymous'}</p>
-          <p className="text-lg text-gray-700">by {state.user ? state.user?.firstName : 'anonymous'}</p>
+          <p className="mb-2 text-xl font-semibold">Painting: {state.artwork ? state.artwork.title: 'Anonymous'}</p>
+          <p className="text-lg text-gray-700">by {state.user ? state.user.firstName : 'Anonymous'}</p>
         </div>
     </div>
   )
