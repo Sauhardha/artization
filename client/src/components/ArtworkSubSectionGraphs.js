@@ -14,6 +14,7 @@ import {
   VictoryStack,
   VictoryBar,
   VictoryContainer,
+  VictoryTheme
 } from 'victory'
 import { useParams } from 'react-router-dom'
 
@@ -93,7 +94,8 @@ const ArtworkSubSectionGraphs = ({ artwork }) => {
 
   return (
     <div className="flex flex-col justify-between text-left rounded-lg ">
-      <VictoryChart polar domain={{ y: [0, 1] }} style={{ color: 'black' }}>
+      <VictoryChart theme={VictoryTheme.material}
+      polar domain={{ y: [0, 1] }} style={{ color: 'black' }}>
         <VictoryGroup
           colorScale={['orange', 'green', 'gold', 'tomato']}
           style={{ data: { fillOpacity: 0.2, strokeWidth: 1 } }}

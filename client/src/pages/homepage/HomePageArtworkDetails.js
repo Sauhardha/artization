@@ -10,8 +10,8 @@ export default function HomePageArtworkDetails({ artwork }) {
     <div>
       {artwork && (
         <div
-          className="flex flex-col justify-between w-auto gap-3 p-6 text-left rounded-lg"
-          style={{ height: '5rem' }}
+          className="flex flex-col justify-between w-auto gap-3 p-6 text-left rounded-lg drop-shadow shadow-xl"
+          
         >
          
           <span className="text-sm headFont c1">{artwork.stat}</span>

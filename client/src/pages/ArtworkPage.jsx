@@ -55,11 +55,11 @@ function ArtworkPage() {
 
                     <ArtworkSubSectionDetails artwork={artwork} />
                     <div className='flex-col h-auto mb-12'>
-                    <div className='w-[40vw]'  data-aos="fade-down">
+                    <div className='w-[22vw]'  data-aos="fade-down">
                         <ArtworkSubSectionGraphs artwork={artwork} />
                     </div>
 
-                    <div className='w-[40vw'  data-aos="fade-up">
+                    <div className='w-[45vw'  data-aos="fade-up">
                         <SubSectionGraph2/>
                     </div>
                     </div>

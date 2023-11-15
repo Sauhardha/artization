@@ -52,7 +52,7 @@ const Login = () => {
 
                             <div className='py-6 text-lg font-bold'>
                                 <span>Don't have an account? </span> 
-                                <span className="text-blue-600"><a href="">Contact us.</a></span> {/* Signup page in this href */}
+                                <span className="text-blue-600"><a href="/signup">Create One.</a></span> {/* Signup page in this href */}
                             </div>
 
                             {/* Login Form */}
