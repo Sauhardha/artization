@@ -21,7 +21,7 @@ function App() {
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem('user'));
 
-    if (storedUser && !storedUser.permissions.length > 0) {
+    if (user && !user.permissions.length > 0) {
       window.location.replace('/welcome');
     }
     setIsLoading(false);

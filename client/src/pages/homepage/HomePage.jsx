@@ -23,8 +23,8 @@ function HomePage() {
 
   useEffect(() => {
     AOS.init({
-      duration: 1000, // Animation duration in milliseconds
-      offset: 100,    // Offset (in pixels) from the original trigger point
+      duration: 1000, 
+      offset: 100,    
     });
   }, []); // Run AOS initialization only once when the component mounts
 
@@ -62,10 +62,10 @@ function HomePage() {
 
         <div className="flex-col items-center justify-center w-full rounded shadow-md">
           <div className="flex flex-col justify-center">
-            <div className="flex flex-col mt-8 text-center  font-bold justify-center">
+            <div className="flex flex-col justify-center mt-8 font-bold text-center">
 
               <div className='flex flex-col justify-center' data-aos="fade-down">
-                <h2 className="py-2 mb-4 md:py-4 md:mb-8 lg:py-6 lg:mb-12 tracking-wide text-5xl">
+                <h2 className="py-2 mb-4 text-5xl tracking-wide md:py-4 md:mb-8 lg:py-6 lg:mb-12">
                   TODAY'S ARTIZATION SUMMARY
                 </h2>
               </div>
@@ -75,16 +75,16 @@ function HomePage() {
               </div>
 
               <div className='w-full h-auto'>
-            <div className='bgDark flex h-96 justify-center items-center text-center'>
-              <p className='text-5xl font-thin tracking-widest text-white mx-20' data-aos="fade-up">
+            <div className='flex items-center justify-center text-center bgDark h-96'>
+              <p className='mx-20 text-5xl font-thin tracking-widest text-white' data-aos="fade-up">
                 Track the flow of visitors through the gallery and <br></br> enhance the natural progression of the exhibition.
               </p>
             </div>
 
           </div>
 
-              <div className='mx-20 mt-8 bg-neutral-50 box-shadow shadow-xl rounded-xl p-8'>
-                <h2 className='font-bold text-5xl'>DAILY OVERVIEW</h2>
+              <div className='p-8 mx-20 mt-8 shadow-xl bg-neutral-50 box-shadow rounded-xl'>
+                <h2 className='text-5xl font-bold'>DAILY OVERVIEW</h2>
                 <div className='flex justify-center'>
 
 
@@ -99,16 +99,16 @@ function HomePage() {
               <div className='grid grid-cols-2'>
 
                 <div className='mx-20 ' data-aos="fade-right">
-                  <img src={fluid} alt="fluid" className='w-96 p-8' />
+                  <img src={fluid} alt="fluid" className='p-8 w-96' />
                 </div>
 
-                <div className='flex flex-col justify-center items-center m-8'>
+                <div className='flex flex-col items-center justify-center m-8'>
                   <h2 className='text-4xl'>SEE THE LATEST UPDATES</h2>
-                  <p className='text-left mt-4'>
+                  <p className='mt-4 text-left'>
                     Stay connected to the pulse of your gallery, adapting and enhancing the
                     viewer experience based on the immediate and ever-evolving insights from our real-time data analytics.
                   </p>
-                  <a className='text-cyan-400 mt-8' href='#'>FOLLOW OUR TIPS</a>
+                  <a className='mt-8 text-cyan-400' href='#'>FOLLOW OUR TIPS</a>
                 </div>
 
 
@@ -149,12 +149,12 @@ function HomePage() {
                 <div className='grid grid-cols-2 border-b border-black'>
 
                   <div className='mx-20 ' data-aos="fade-left">
-                    <img src={eye} alt="fluid" className='w-96 p-2' />
+                    <img src={eye} alt="fluid" className='p-2 w-96' />
                   </div>
 
-                  <div className='flex flex-col justify-center text-left ml-80 order-first '>
+                  <div className='flex flex-col justify-center order-first text-left ml-80 '>
                     <h2 className='text-4xl'>FEEDBACK FOR ARTISTIC DIRECTION</h2>
-                    <p className='text-left font-medium mt-4'>
+                    <p className='mt-4 font-medium text-left'>
                       Use emotional analytics as a form of feedback on your artistic direction.
                       Understand which emotional tones are more prevalent and consider adjusting your work accordingly.
                     </p>
@@ -166,8 +166,8 @@ function HomePage() {
                 </div>
             </div>
 
-            <div className='w-full h-auto bgDark text-white p-8'>
-              <ul className='flex flex-row gap-20 justify-center mx-auto'>
+            <div className='w-full h-auto p-8 text-white bgDark'>
+              <ul className='flex flex-row justify-center gap-20 mx-auto'>
                 <a href="/gallery"><li className='hover:text-emerald-500'>GALLERY</li></a>
                 <a href="/home"><li className='hover:text-sky-500'>BACK TO TOP</li></a>
                 
