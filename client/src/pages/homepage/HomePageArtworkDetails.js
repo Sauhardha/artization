@@ -10,7 +10,7 @@ export default function HomePageArtworkDetails({ artwork }) {
     <div>
       {artwork && (
         <div
-          className="flex flex-col justify-between w-auto gap-3 p-6 text-left rounded-lg drop-shadow shadow-xl"
+          className="flex flex-col justify-between w-auto gap-3 p-6 bg-neutral-50 text-left rounded-lg drop-shadow shadow-xl"
           
         >
          
