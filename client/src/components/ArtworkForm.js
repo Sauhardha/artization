@@ -64,6 +64,7 @@ const ArtworkForm = ({onCancel}) => {
       setImage(null);
       setEmptyFields([]);
       setError(null);
+      onCancel()
     } catch (error) {
       setError(error.response?.data?.error);
     } finally {
@@ -81,7 +82,7 @@ const ArtworkForm = ({onCancel}) => {
   
 
   return (
-    <form className="p-8 create bg-neutral-50 rounded-xl drop-shadow shadow-2xl" onSubmit={handleSubmit} >
+    <form className="p-8 shadow-2xl create bg-neutral-50 rounded-xl drop-shadow" onSubmit={handleSubmit} >
       <div className="flex justify-end">
         <button
           className="text-gray-700 hover:text-red-500"
@@ -90,7 +91,7 @@ const ArtworkForm = ({onCancel}) => {
           Cancel
         </button>
       </div>
-      <h3 className="text-xl text-center border-b-2 pb-8 font-medium tracking-wide headFont">Add a new Artwork</h3>
+      <h3 className="pb-8 text-xl font-medium tracking-wide text-center border-b-2 headFont">Add a new Artwork</h3>
 
       <div className="p-4 space-y-4 text-lg">
         <div className="grid grid-cols-2 gap-4">

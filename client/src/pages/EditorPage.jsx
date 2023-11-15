@@ -19,8 +19,8 @@ function EditorPage() {
   const handleSetupNewArtwork = () => {
     setShowCreateArtwork(true);
   };
-  const handleCancelNewArtwork = () => {
-    setShowCreateArtwork(false);
+  const handleCancelNewArtwork = (defaultParam = false) => {
+    setShowCreateArtwork(defaultParam);
   };
 
 
@@ -58,8 +58,8 @@ function EditorPage() {
   return (
     <>
       <Navbar />
-      <div className="flex flex-col items-center justify-center h-full p-8 EditorPage mt-12">
-        <h1 className='self-center text-5xl headFont font-bold mb-8'>EDIT YOUR GALLERY</h1>
+      <div className="flex flex-col items-center justify-center h-full p-8 mt-12 EditorPage">
+        <h1 className='self-center mb-8 text-5xl font-bold headFont'>EDIT YOUR GALLERY</h1>
        
       <div className='flex flex-row justify-between'>
       {ShowCreateArtwork ? (
@@ -67,7 +67,7 @@ function EditorPage() {
       ) : (
         <div className="mt-4">
           <button
-            className="px-4 py-2 mr-2 text-white bg-cyan-500 rounded duration-300 ease hover:bg-emerald-500 "
+            className="px-4 py-2 mr-2 text-white duration-300 rounded bg-cyan-500 ease hover:bg-emerald-500 "
             onClick={handleSetupNewArtwork}
           >
             Add Art
