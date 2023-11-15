@@ -21,7 +21,7 @@ function App() {
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem('user'));
 
-    if (storedUser && !storedUser.permissions.length > 0) {
+    if (user && !user.permissions.length > 0) {
       window.location.replace('/welcome');
     }
     setIsLoading(false);
@@ -60,7 +60,7 @@ function App() {
             <Route path="/login" element={<Login />} />
 
             {/* If not logged in, access signup */}
-            {/* {!user && <Route path="/signup" element={<Signup />} />} */}
+            {!user && <Route path="/signup" element={<Signup />} />}
             {!user && <Route path="/about" element={<About />} />}
           </Routes>
         </div>
