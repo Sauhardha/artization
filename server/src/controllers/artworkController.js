@@ -279,7 +279,7 @@ const getHottest = async (req, res) => {
       .on('data', (data) => results.push(data))
       .on('end', async () => {
         try {
-          const processed = await sortByRaspIDWithTotalSessions(results);
+          const processed = await sortByRaspIDWithTotalSessions(results)
 
           const response = []
           for (const id of processed) {
@@ -294,9 +294,11 @@ const getHottest = async (req, res) => {
               }).select('firstName lastName')
             }
 
-            const emotion =  await RaspberryPiSession.findOne({
+            const emotion = await RaspberryPiSession.findOne({
               RaspID: id.RaspID,
-            }).sort({ Happy: -1, Excited: -1 }).select('-_id Happy Sad Excited Surprise Neutral')
+            })
+              .sort({ Happy: -1, Excited: -1 })
+              .select('-_id Happy Sad Excited Surprise Neutral')
 
             response.push({
               ...id,
@@ -318,16 +320,28 @@ const getHottest = async (req, res) => {
   }
 }
 
+function sortByNumberOfSessions(data) {
+  if (!Array.isArray(data) || data.length === 0) {
+    return []
+  }
+
+  // Use the sort method to sort the array by numberOfSessions in descending order
+  const sortedData = data
+    .slice()
+    .sort((a, b) => b.numberOfSessions - a.numberOfSessions)
+
+  return sortedData
+}
+
 const emotionsHomePage = async (req, res) => {
   try {
     let results = []
 
     console.log('yooo', req.query)
 
-    const {id} = req.query
+    const { id } = req.query
 
-    if(id){
-      
+    if (id) {
     }
 
     fs.createReadStream('./../myData.csv')
@@ -337,13 +351,35 @@ const emotionsHomePage = async (req, res) => {
         try {
           const processed = sortByRaspIDWithTotalSessions(results)
 
-          const raspiWithMaxSessions = findRaspiWithMaxSessions(processed)
+          const ids = sortByNumberOfSessions(processed)
 
-          const responseObj =  await RaspberryPiSession.findOne({
-              RaspID: raspiWithMaxSessions.RaspID,
-            }).sort({ Happy: -1, Excited: -1 })
+          // const raspiWithMaxSessions = findRaspiWithMaxSessions(processed)
+          let artwork = {}
+          for (const s of ids) {
+            artwork = await Artwork.findOne({ RaspID: s.RaspID })
 
-          res.status(200).json(responseObj)
+            if (artwork) {
+              break
+            }
+
+          }
+          let sessions = {}
+          if(artwork){
+            sessions = await RaspberryPiSession.findOne({
+                  RaspID: artwork.RaspID,
+                }).sort({ Happy: -1, Excited: -1 })
+          }
+
+          let user = {}
+
+          if(sessions){
+            user = await User.findOne({email: artwork.artist_email})
+          }
+          // const responseObj =  await RaspberryPiSession.findOne({
+          //     RaspID: raspiWithMaxSessions.RaspID,
+          //   }).sort({ Happy: -1, Excited: -1 })
+
+          res.status(200).json({artwork, sessions, user})
         } catch (error) {
           console.error(error)
           res.status(500).json({ error: 'Internal Server Error' })

@@ -12,9 +12,19 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Check if either first name or last name is empty
+  if (firstName.trim() === '' || lastName.trim() === '') {
+    // Display an error message
+    alert('Please enter both first name and last name.');
+    return;
+  }
+
     // Pass firstName and lastName to the signup function
     await signup({ firstName, lastName, email, password });
     window.location.replace('/welcome')
+
+
   };
 
   return (
