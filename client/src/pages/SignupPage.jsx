@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../styles/index.css';
 import { useSignup } from '../hooks/useSignup';
+import signupBG from '../images/signupBg.jpg';
 
 const Signup = () => {
   const [firstName, setFirstName] = useState('');
@@ -17,7 +18,9 @@ const Signup = () => {
   };
 
   return (
-    <div className="flex items-center justify-center h-max bgDark">
+    <div className="flex items-center justify-center h-screen">
+      <div className="flex items-center justify-center h-screen bg-cover bg-center w-full" style={{ backgroundImage: `url(${signupBG})` }}>
+      
       <div className="flex flex-col items-center justify-center h-[35rem] p-0 mt-4 bg-white rounded-xl shadow-md">
         <div className="grid w-auto grid-cols-2 gap-16 p-8">
           <img src="/images/userPotential.png" alt="" className="self-center h-40 md:w-96 md:h-72 w-72" />
@@ -97,6 +100,7 @@ const Signup = () => {
             </form>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );
