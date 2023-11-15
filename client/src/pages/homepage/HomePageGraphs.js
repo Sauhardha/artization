@@ -111,8 +111,6 @@ const HomePageGraphs = () => {
     })
   }
 
-  console.log('yououo',  state.user.firstName)
-
   return (
     <div className="flex items-center mx-40 text-black drop-shadow shadow-xl rounded-xl mb-16">
       <div style={{ minWidth: '50%' }} className="w-2/3">
@@ -135,7 +133,7 @@ const HomePageGraphs = () => {
             The most viewed painting today
           </h1>
           <p className="mb-2 text-xl font-semibold">Painting: {state.artwork ? state.artwork.title: 'anonymous'}</p>
-          <p className="text-lg text-gray-700">by {state.user ? state.user.firstName : 'anonymous'}</p>
+          <p className="text-lg text-gray-700">by {state.user ? state.user.firstName : 'Anonymous'}</p>
         </div>
       
     </div>
