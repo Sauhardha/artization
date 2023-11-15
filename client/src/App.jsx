@@ -60,7 +60,7 @@ function App() {
             <Route path="/login" element={<Login />} />
 
             {/* If not logged in, access signup */}
-            {/* {!user && <Route path="/signup" element={<Signup />} />} */}
+            {!user && <Route path="/signup" element={<Signup />} />}
             {!user && <Route path="/about" element={<About />} />}
           </Routes>
         </div>
