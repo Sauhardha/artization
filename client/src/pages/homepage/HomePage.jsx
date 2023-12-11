@@ -23,7 +23,7 @@ function HomePage() {
 
   useEffect(() => {
     AOS.init({
-      duration: 1000, 
+      duration: 2000, 
       offset: 100,    
     });
   }, []); // Run AOS initialization only once when the component mounts

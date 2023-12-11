@@ -13,7 +13,7 @@ export default function HomePageArtworks({artworks}) {
         <span style={{ opacity: 0.8 }}>Master</span>
         <span style={{ opacity: 0.5 }}>pieces</span>
       </h1>
-      <div className="flex gap-8">
+      <div className="flex gap-8 mb-12">
         {artworks.filter((artwork) => artwork.artwork && artwork).slice(0, 3).map(
             (artwork) =><HomePageArtworkDetails artwork={artwork} />,
           )}
