@@ -20,7 +20,7 @@ const HomePageGraphs = () => {
     const fetchHottestSessions = async () => {
       try {
         const response = await axios.get(
-          'http://localhost:8080/api/artworks/sessions/homepage',
+          'http://54.226.113.32:9090/api/artworks/sessions/homepage',
           {
             headers: {
               Authorization: `Bearer ${user.token}`,

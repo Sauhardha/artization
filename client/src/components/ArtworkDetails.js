@@ -15,7 +15,7 @@ const ArtworkDetails = ({ artwork, isAdminView }) => {
     }
 
     const response = await fetch(
-      'http://localhost:8080/api/artworks/' + artwork._id,
+      'http://54.226.113.32:9090/api/artworks/' + artwork._id,
       {
         method: 'DELETE',
         headers: {
@@ -56,7 +56,7 @@ const ArtworkDetails = ({ artwork, isAdminView }) => {
         <span className="text-sm headFont c1">{artwork.stat}</span>
         {/* <span className='text-xs headFont c3'>{formatDistanceToNow(new Date(artwork.createdAt), {addSuffix: true})}</span> */}
         <img
-          src={`http://localhost:8080${artwork.imageURL}`}
+          src={`http://54.226.113.32:9090${artwork.imageURL}`}
           alt="artwork"
           className="mt-4 h-52 w-auto mx-auto box-shadow shadow-xl border-4 border-black"
         />

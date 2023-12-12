@@ -10,7 +10,7 @@ export const useSignup = () => {
         setIsLoading(true)
         setError(null)
 
-        const response = await fetch('http://localhost:8080/api/auth/signup', {
+        const response = await fetch('http://54.226.113.32:9090/api/auth/signup', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({firstName, lastName, email, password})

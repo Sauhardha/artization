@@ -6,7 +6,7 @@ export const AuthContext = createContext()
 
 
 export const axiosInstance = axios.create({
-    baseURL: 'http://localhost:8080/api',
+    baseURL: 'http://54.226.113.32:9090/api',
     // headers: {
     //   Authorization: `Bearer ${token}`,
     // },

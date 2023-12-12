@@ -16,7 +16,7 @@ In addtion, there needs to be a file created called ".env" inside of the server 
  
 the file should contain this:
 -------------
-PORT=8080
+PORT=9090
 MONGO_URI=mongodb+srv://sds-artization:fptvmkZxjXhnDkqE@artizationcluster.bbubuyo.mongodb.net/?retryWrites=true&w=majority
 SECRET=Zjy27U6SjpoqDNo0I96i
 -------------

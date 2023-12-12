@@ -29,7 +29,7 @@ const ArtworkSubSectionGraphs = ({ artwork }) => {
 
   useEffect(() => {
     const res = axios
-      .get(`http://localhost:8080/api/artworks/${id}/sessions`, {
+      .get(`http://54.226.113.32:9090/api/artworks/${id}/sessions`, {
         headers: {
           Authorization: `Bearer ${user.token}`,
         },

@@ -31,7 +31,7 @@ function ArtworkPage() {
             }
         } else {
             const fetchArtworks = async () => {
-                const response = await fetch(`http://localhost:8080/api/artworks/${id}`, {
+                const response = await fetch(`http://54.226.113.32:9090/api/artworks/${id}`, {
                   headers: {
                     'Authorization': `Bearer ${user.token}`}})
                 const json = await response.json()
