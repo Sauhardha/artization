@@ -23,7 +23,7 @@ export default function SubSectionGraph2(){
     const fetchHottestSessions = async () => {
       try {
         const response = await axios.get(
-          `http://54.226.113.32:9090/api/artworks/${id}/sessions`,
+          `http://13.236.67.134:9090/api/artworks/${id}/sessions`,
           {
             headers: {
               Authorization: `Bearer ${user.token}`,

@@ -15,7 +15,7 @@ const ArtworkSubSectionDetails = ({ artwork }) => {
         className="flex flex-col justify-between w-auto text-left rounded-lg shadow-lg artwork-details bg-zinc-800 shadow-slate-950 hover:shadow-slate-700"
         style={{ width: '60%' }}
       >
-        <img src={`http://54.226.113.32:9090${artwork.imageURL}`} alt="artwork" />
+        <img src={`http://13.236.67.134:9090${artwork.imageURL}`} alt="artwork" />
       </div>
       <div  className="my-6">
         <h2 className="my-2 md:text-2xl headFont">Description: </h2>

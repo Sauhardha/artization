@@ -12,7 +12,7 @@ print("For Summary Data, please use: http://127.0.0.1:5000/json2")
 print("----------------------------------------------------------")
 print()
 
-api_url = 'http://54.226.113.32:9090/api/artworks/sessions'
+api_url = 'http://13.236.67.134:9090/api/artworks/sessions'
 
 
 @app.route('/')

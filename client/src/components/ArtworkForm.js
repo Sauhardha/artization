@@ -47,7 +47,7 @@ const ArtworkForm = ({onCancel}) => {
     
     try {
       const res = await axios.post(
-        'http://54.226.113.32:9090/api/artworks',
+        'http://13.236.67.134:9090/api/artworks',
         formData,
         {
           headers: {

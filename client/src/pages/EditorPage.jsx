@@ -30,7 +30,7 @@ function EditorPage() {
     const fetchArtworks = async () => {
       if (user) { // Check if user exists before making the API request
         try {
-          const response = await fetch('http://54.226.113.32:9090/api/artworks', {
+          const response = await fetch('http://13.236.67.134:9090/api/artworks', {
             headers: {
               'Authorization': `Bearer ${user.token}`
             }

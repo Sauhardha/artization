@@ -15,7 +15,7 @@ const ArtworkDetails = ({ artwork, isAdminView }) => {
     }
 
     const response = await fetch(
-      'http://54.226.113.32:9090/api/artworks/' + artwork._id,
+      'http://13.236.67.134:9090/api/artworks/' + artwork._id,
       {
         method: 'DELETE',
         headers: {

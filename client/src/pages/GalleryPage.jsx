@@ -15,7 +15,7 @@ const GalleryPage = () => {
 
   useEffect(() => {
     const fetchArtworks = async () => {
-      const response = await fetch('http://54.226.113.32:9090/api/artworks', {
+      const response = await fetch('http://13.236.67.134:9090/api/artworks', {
         headers: {
           'Authorization': `Bearer ${user.token}`}})
       // Each object from backend represents an artwork

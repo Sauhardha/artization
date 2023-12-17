@@ -16,7 +16,7 @@ export const useLogin = () => {
         setIsLoading(true)
         setError(null)
 
-        const response = await fetch('http://54.226.113.32:9090/api/auth/login', {
+        const response = await fetch('http://13.236.67.134:9090/api/auth/login', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({email, password})
